@@ -1,0 +1,15 @@
+{
+  "values": [
+    "tfcsbu:fridge_upgrade",
+    "tfcsbu:oven_upgrade",
+    "tfcsbu:stack_upgrade_tier_copper",
+    "tfcsbu:stack_upgrade_tier_bismuth_bronze",
+    "tfcsbu:stack_upgrade_tier_bronze",
+    "tfcsbu:stack_upgrade_tier_black_bronze",
+    "tfcsbu:stack_upgrade_tier_wrought_iron",
+    "tfcsbu:stack_upgrade_tier_steel",
+    "tfcsbu:stack_upgrade_tier_black_steel",
+    "tfcsbu:stack_upgrade_tier_blue_steel",
+    "tfcsbu:stack_upgrade_tier_red_steel"
+  ]
+}

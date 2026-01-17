@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "tfcsbu:item/stack_upgrade_tier_bismuth_bronze"
+    }
+}

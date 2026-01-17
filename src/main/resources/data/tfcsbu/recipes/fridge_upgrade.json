@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "sophisticatedcore:item_enabled",
+      "itemRegistryName": "tfcsbu:fridge_upgrade"
+    }
+  ],
+  "key": {
+    "B": {
+      "item": "sophisticatedbackpacks:upgrade_base"
+    },
+    "V": {
+      "tag": "tfc:large_vessels"
+    },
+    "S": {
+      "item": "minecraft:snow_block"
+    }
+  },
+  "pattern": [
+    "SVS",
+    "SBS",
+    "SSS"
+  ],
+  "result": {
+    "item": "tfcsbu:fridge_upgrade"
+  }
+}

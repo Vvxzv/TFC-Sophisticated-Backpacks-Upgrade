@@ -1,0 +1,25 @@
+{
+    "type" : "minecraft:crafting_shaped",
+    "conditions" : [
+        {
+            "type" : "sophisticatedcore:item_enabled",
+            "itemRegistryName" : "tfcsbu:stack_upgrade_tier_bismuth_bronze"
+        }
+    ],
+    "key" : {
+        "B" : {
+            "item" : "tfcsbu:stack_upgrade_tier_copper"
+        },
+        "C" : {
+            "item" : "tfc:metal/double_sheet/bismuth_bronze"
+        }
+    },
+    "pattern" : [
+        "CCC",
+        "CBC",
+        "CCC"
+    ],
+    "result" : {
+        "item" : "tfcsbu:stack_upgrade_tier_bismuth_bronze"
+    }
+}

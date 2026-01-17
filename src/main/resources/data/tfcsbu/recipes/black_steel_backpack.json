@@ -1,0 +1,25 @@
+{
+  "type": "sophisticatedbackpacks:backpack_upgrade",
+  "conditions": [
+    {
+      "type": "sophisticatedcore:item_enabled",
+      "itemRegistryName": "tfcsbu:black_steel_backpack"
+    }
+  ],
+  "key": {
+    "B": {
+      "item": "tfcsbu:steel_backpack"
+    },
+    "C": {
+      "tag": "forge:ingots/black_steel"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CBC",
+    "CCC"
+  ],
+  "result": {
+    "item": "tfcsbu:black_steel_backpack"
+  }
+}

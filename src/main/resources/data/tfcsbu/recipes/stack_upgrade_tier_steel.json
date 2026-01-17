@@ -1,0 +1,25 @@
+{
+    "type" : "minecraft:crafting_shaped",
+    "conditions" : [
+        {
+            "type" : "sophisticatedcore:item_enabled",
+            "itemRegistryName" : "tfcsbu:stack_upgrade_tier_steel"
+        }
+    ],
+    "key" : {
+        "B" : {
+            "item" : "tfcsbu:stack_upgrade_tier_wrought_iron"
+        },
+        "C" : {
+            "item" : "tfc:metal/double_sheet/steel"
+        }
+    },
+    "pattern" : [
+        "CCC",
+        "CBC",
+        "CCC"
+    ],
+    "result" : {
+        "item" : "tfcsbu:stack_upgrade_tier_steel"
+    }
+}

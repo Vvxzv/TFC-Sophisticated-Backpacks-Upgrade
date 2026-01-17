@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "tfcsbu:block/black_bronze_backpack",
+            "y": 90
+        },
+        "facing=north": {
+            "model": "tfcsbu:block/black_bronze_backpack"
+        },
+        "facing=south": {
+            "model": "tfcsbu:block/black_bronze_backpack",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "tfcsbu:block/black_bronze_backpack",
+            "y": 270
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfcsbu:bismuth_bronze_backpack",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfcsbu:bronze_backpack",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfcsbu:black_bronze_backpack",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfcsbu:wrought_iron_backpack",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "sophisticatedbackpacks:advanced_magnet_upgrade",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 92
+        }
+      ],
+      "name": "main",
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "sophisticatedbackpacks:inject/chests/woodland_mansion"
+}
