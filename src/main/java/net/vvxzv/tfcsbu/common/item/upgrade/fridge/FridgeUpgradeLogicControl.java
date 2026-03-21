@@ -14,14 +14,16 @@ import java.util.List;
 public class FridgeUpgradeLogicControl extends CompositeWidgetBase<WidgetBase> {
     private final FridgeUpgradeLogicContainer container;
     private static final TextureBlitData SLOTS_BACKGROUND = new TextureBlitData(GuiHelper.SLOTS_BACKGROUND, Dimension.SQUARE_256, new UV(0, 0), new Dimension(54, 54));
+
     protected FridgeUpgradeLogicControl(Position position, FridgeUpgradeLogicContainer upgradeLogicContainer) {
-        super(position,  new Dimension(64, 64));
+        super(position,  new Dimension(75, 65));
         this.container = upgradeLogicContainer;
     }
 
     @Override
     protected void renderBg(@NotNull GuiGraphics guiGraphics, @NotNull Minecraft minecraft, int mouseX, int mouseY) {
         GuiHelper.blit(guiGraphics, this.x, this.y, SLOTS_BACKGROUND);
+        this.container.getLogicSupplier().get().showPowerSwitchTooltip(guiGraphics, this.x -3, this.y, mouseX, mouseY);
     }
 
     public void moveSlotsToView(int screenGuiLeft, int screenGuiTop) {

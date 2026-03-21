@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "tfcsbu:forging_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		" b ",
+		"aaa"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_ingot/copper"
+		},
+		"b": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		}
+	}
+}

@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"result": {
-		"item": "tfcsbu:fridge_upgrade",
+		"item": "tfcsbu:crucible_upgrade",
 		"count": 1
 	},
 	"pattern": [
@@ -11,10 +11,10 @@
 	],
 	"key": {
 		"a": {
-			"item": "minecraft:snow_block"
+			"item": "tfc:metal/ingot/sterling_silver"
 		},
 		"b": {
-			"tag": "tfc:large_vessels"
+			"item": "tfc:crucible"
 		},
 		"c": {
 			"item": "minecraft:redstone"

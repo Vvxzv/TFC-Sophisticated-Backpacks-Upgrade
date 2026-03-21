@@ -2,6 +2,8 @@
   "values": [
     "tfcsbu:fridge_upgrade",
     "tfcsbu:oven_upgrade",
+    "tfcsbu:crucible_upgrade",
+    "tfcsbu:forging_upgrade",
     "tfcsbu:stack_upgrade_tier_copper",
     "tfcsbu:stack_upgrade_tier_bismuth_bronze",
     "tfcsbu:stack_upgrade_tier_bronze",

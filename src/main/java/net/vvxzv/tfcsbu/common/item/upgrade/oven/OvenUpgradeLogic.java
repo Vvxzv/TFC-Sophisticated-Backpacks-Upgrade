@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.ItemStackHandler;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Dimension;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
@@ -25,6 +26,10 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import net.vvxzv.tfcsbu.common.UFoodTrait;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
+import net.vvxzv.tfcsbu.common.utils.LogicHelper;
+import net.vvxzv.tfcsbu.compat.firmalife.DefaultOvenBakingHandler;
+import net.vvxzv.tfcsbu.compat.firmalife.FLOvenBakingHandler;
+import net.vvxzv.tfcsbu.compat.firmalife.OvenBakingHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -39,19 +44,9 @@ public class OvenUpgradeLogic {
     private float maxTemperature = 0.0F;
     private long burnTime = 0L;
 
-    private static final OvenBakingHandler BAKING_HANDLER;
-
-    static {
-        OvenBakingHandler handler;
-        try {
-            Class.forName("com.eerussianguy.firmalife.common.recipes.OvenRecipe");
-            Class.forName("com.eerussianguy.firmalife.common.items.FLFoodTraits");
-            handler = new FLOvenBakingHandler();
-        } catch (ClassNotFoundException e) {
-            handler = new DefaultOvenBakingHandler();
-        }
-        BAKING_HANDLER = handler;
-    }
+    private static final OvenBakingHandler BAKING_HANDLER =
+            ModList.get().isLoaded("firmalife")?
+                    new FLOvenBakingHandler() : new DefaultOvenBakingHandler();
 
     public OvenUpgradeLogic(ItemStack upgrade, Consumer<ItemStack> saveHandler){
         this.upgrade = upgrade;
@@ -83,11 +78,10 @@ public class OvenUpgradeLogic {
     @SuppressWarnings("removal")
     public void showTemperature(@NotNull GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY){
         float currentTemp = getTemperature();
+        Heat heatLevel = Heat.getHeat(currentTemp);
+        ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
         int dy = Mth.clamp((int)(51.0F * temperature / Heat.BRILLIANT_WHITE.getMax()), 0, 51);
         new CustomTooltipComponent(26, 11, 8, 51){
-            Heat heatLevel = Heat.getHeat(currentTemp);
-            ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
-
             @Override
             public Component[] getComponents() {
                 return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
@@ -110,24 +104,17 @@ public class OvenUpgradeLogic {
 
         if(getInventory() != null){
             ItemStackHandler handler = getInventory();
-            for (int i = 0; i < 3; i++){
-                ItemStack itemStack1 = handler.getStackInSlot(i);
-                ItemStack itemStack2 = handler.getStackInSlot(i + 1);
-                if(!itemStack1.isEmpty() && itemStack2.isEmpty()){
-                    handler.setStackInSlot(i + 1, itemStack1.copy());
-                    handler.setStackInSlot(i, ItemStack.EMPTY);
-                }
-            }
+            LogicHelper.setFuel(handler, 0, 3);
 
             ItemStack item = handler.getStackInSlot(3);
             Fuel fuel = Fuel.get(item);
-            if (fuel != null && calendarTick - getBurnTime() > 0) {
+            if (fuel != null && calendarTick - this.getBurnTime() > 0) {
                 item.shrink(1);
                 this.setMaxTemperature(fuel.getTemperature());
                 this.setBurnTime(calendarTick + fuel.getDuration());
             }
 
-            if(calendarTick - getBurnTime() > 0){
+            if(calendarTick - this.getBurnTime() > 0){
                 this.setMaxTemperature(0F);
                 if(this.getTemperature() > 0){
                     this.handleTemperature(-1);
@@ -156,8 +143,7 @@ public class OvenUpgradeLogic {
                             ItemStack output = recipe.assemble(inventory, level.registryAccess());
                             FoodCapability.applyTrait(output, UFoodTrait.OVEN_BAKED);
                             handler.setStackInSlot(i, output);
-                        }
-                        else {
+                        } else {
                             ItemStack bakedOutput = BAKING_HANDLER.handleBaking(itemStack, itemTemp, inventory, level);
                             if (bakedOutput != null) {
                                 handler.setStackInSlot(i, bakedOutput);

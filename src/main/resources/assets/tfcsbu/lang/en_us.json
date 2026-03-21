@@ -1,13 +1,21 @@
 {
   "tfcsbu.tab": "TFC Sophisticated Backpack Upgrade",
   "item.tfcsbu.fridge_upgrade": "Fridge Upgrade",
-  "item.tfcsbu.fridge_upgrade.tooltip": "Used to extend the shelf life of food, by 2.5 times",
+  "item.tfcsbu.fridge_upgrade.tooltip": "Used to extend the shelf life of food",
   "upgrade.tab.fridge": "Fridge",
   "tfcsbu.tooltip.food_trait.fridge_preserved": "Fridge Preserved",
+  "tfcsbu.tooltip.food_trait.electricity_fridge_preserved": "Electricity Fridge Preserved",
   "item.tfcsbu.oven_upgrade": "Oven Upgrade",
   "item.tfcsbu.oven_upgrade.tooltip": "Used to cook food",
   "upgrade.tab.oven": "Oven",
   "tfcsbu.tooltip.food_trait.oven_baked": "Oven Baked",
+  "item.tfcsbu.crucible_upgrade": "Crucible Upgrade",
+  "item.tfcsbu.crucible_upgrade.tooltip": "A backpack crucible",
+  "upgrade.tab.crucible": "Crucible",
+  "tfcsbu.crucible_upgrade.bellows.trigger": "Click to blast (need bellows)",
+  "item.tfcsbu.forging_upgrade": "Forging Upgrade",
+  "item.tfcsbu.forging_upgrade.tooltip": "A backpack anvil for forging",
+  "upgrade.tab.forging": "Forging",
   "item.tfcsbu.bismuth_bronze_backpack":"Bismuth Bronze Backpack",
   "item.tfcsbu.bronze_backpack":"Bronze Backpack",
   "item.tfcsbu.black_bronze_backpack":"Black Bronze Backpack",
@@ -37,6 +45,12 @@
   "block.tfcsbu.black_bronze_backpack":"Black Bronze Backpack",
   "block.tfcsbu.wrought_iron_backpack":"Wrought Iron Backpack",
   "block.tfcsbu.steel_backpack":"Steel Backpack",
-  "block.tfcsbu.black_steel_backpack":"Black Steel Backpack"
-
+  "block.tfcsbu.black_steel_backpack":"Black Steel Backpack",
+  "button.power_switch": "Power Switch",
+  "button.power_switch.tooltip": "It will only take effect when the backpack is in player inventory",
+  "button.crucible.temperature_lock": "Temperature Lock",
+  "button.crucible.temperature_lock.tooltip": "It can only be used when the power supply is available",
+  "button.power_switch.true": "On",
+  "button.power_switch.false": "Off",
+  "button.forging.welding": "Welding"
 }

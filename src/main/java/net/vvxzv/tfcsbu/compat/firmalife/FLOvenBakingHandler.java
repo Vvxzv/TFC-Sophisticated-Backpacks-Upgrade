@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common.item.upgrade.oven;
+package net.vvxzv.tfcsbu.compat.firmalife;
 
 import com.eerussianguy.firmalife.common.items.FLFoodTraits;
 import com.eerussianguy.firmalife.common.recipes.OvenRecipe;
