@@ -1,4 +1,6 @@
 {
-    "loader": "sophisticatedbackpacks:backpack",
-    "clipsTexture": "tfcsbu:block/black_bronze_clips"
+    "parent": "sophisticatedbackpacks:block/backpack",
+    "textures": {
+        "clips": "tfcsbu:block/black_bronze_clips"
+    }
 }

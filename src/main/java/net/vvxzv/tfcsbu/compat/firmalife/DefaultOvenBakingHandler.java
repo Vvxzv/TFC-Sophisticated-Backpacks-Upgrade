@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common.item.upgrade.oven;
+package net.vvxzv.tfcsbu.compat.firmalife;
 
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.minecraft.world.item.ItemStack;

@@ -6,10 +6,10 @@
   "refmap" : "tfcsbu.refmap.json",
   "mixins" : [
     "BackpackItemMixin",
-    "CuriosCompatMixin"
+    "CuriosCompatMixin",
+    "PacketHelperMixin"
   ],
   "client" : [
-    "BackpackModelMixin"
   ],
   "injectors" : {
     "defaultRequire" : 1

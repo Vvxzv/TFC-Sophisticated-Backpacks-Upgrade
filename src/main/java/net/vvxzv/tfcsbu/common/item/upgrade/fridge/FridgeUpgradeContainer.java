@@ -22,8 +22,10 @@ public class FridgeUpgradeContainer extends UpgradeContainerBase<FridgeUpgradeWr
     }
 
     @Override
-    public void handleMessage(CompoundTag compoundTag) {
-
+    public void handleMessage(CompoundTag data) {
+        if(data.contains("fridge_switch")){
+            this.container.getLogicSupplier().get().handlePowerSwitch();
+        }
     }
 
     public FridgeUpgradeLogicContainer getContainer() {

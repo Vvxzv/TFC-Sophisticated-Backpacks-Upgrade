@@ -17,7 +17,7 @@ public class FridgeUpgradeWrapper extends UpgradeWrapperBase<FridgeUpgradeWrappe
 
     public FridgeUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
-        this.logic = new FridgeUpgradeLogic(upgrade, upgradeSaveHandler);
+        this.logic = new FridgeUpgradeLogic(storageWrapper, upgrade, upgradeSaveHandler);
     }
 
 
@@ -27,7 +27,7 @@ public class FridgeUpgradeWrapper extends UpgradeWrapperBase<FridgeUpgradeWrappe
 
     @Override
     public void tick(@Nullable Entity entity, @NotNull Level level, @NotNull BlockPos pos) {
-        this.logic.tick();
+        this.logic.tick(level);
     }
 
     @Override
