@@ -1,6 +1,5 @@
 # 群峦精妙背包升级
 ## 添加了群峦版本的背包及其升级插件
-#### 升级插件功能是正常的，只是精妙背包里的物品存在显示问题
 
 ### 模组内容
 1. 添加了六种背包：铋铜背包、青铜背包、黑铜背包对应精妙背包的铁制背包；锻铁背包对应精妙背包的金制背包；钢制背包对应精妙背包的钻石背包；黑钢对应精妙背包的下界合金背包。
@@ -14,7 +13,6 @@
 
 # TFC Sophisticated Backpacks Upgrade
 ## Added backpack and upgrade for TFC
-#### The upgrade function is normal, but there is a display question with the items in the sophisticated backpack
 
 ### Mod Content
 1. Six types of backpacks have been added: Bismuth Bronze Backpack, Bronze Backpack, and Black Bronze Backpack correspond to the Iron Backpack; Wrought Iron Backpack corresponds to the Gold Backpack; Steel Backpack corresponds to the Diamond Backpack; Black Steel corresponds to the Netherite Backpack.
