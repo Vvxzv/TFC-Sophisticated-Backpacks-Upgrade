@@ -6,7 +6,6 @@ import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 
-
 public class LogicHelper {
     public static void setFuel(ItemStackHandler handler, int fromSlot, int toSlot) {
         for (int i = fromSlot; i < toSlot; i++){

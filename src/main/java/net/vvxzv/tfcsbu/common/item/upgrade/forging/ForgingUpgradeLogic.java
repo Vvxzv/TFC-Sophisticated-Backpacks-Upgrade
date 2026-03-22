@@ -48,6 +48,7 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     @Nullable
     private ItemStackHandler inventory;
     private Level level;
+    private List<AnvilRecipe> recipes;
 
 
     private static final TextureBlitData TARGET = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(181, 0), new Dimension(5, 5));
@@ -167,35 +168,43 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
 
     public void tick(Level level, Entity entity) {
         this.level = level;
+        ItemStack stack = this.getItem();
+        if(!stack.isEmpty()) {
+            this.recipes = AnvilRecipe.getAll(level, stack, this.getTier());
+            if(recipes.size() == 1) {
+                this.chooseRecipe(recipes.get(0));
+            }
+        }
 
         if(MAID_FORGE != null) {
             ItemStack maidStack = getInventory().getStackInSlot(2);
             if(MAID_FORGE.isValidMaid(level, maidStack)) {
                 if(level.getGameTime() % (MAID_FORGE.perTicks() * 2) == 0L) {
                     ItemStack hammer = MAID_FORGE.getMaidMainHandItem(level, maidStack);
-                    FakePlayer player = new FakePlayer((ServerLevel) level, new GameProfile(uuid, "Maid"));
-                    player.setPos(entity.position());
-                    player.setItemInHand(InteractionHand.MAIN_HAND, hammer);
-                    ItemStack stack = this.getItem();
-                    Forging forging = ForgingCapability.get(stack);
-                    if(forging != null && forging.getWorkTarget() != 0) {
-                        AnvilRecipe recipe = forging.getRecipe(level);
-                        if(recipe != null){
-                            int currentWork = forging.getWork();
-                            int targetWork = forging.getWorkTarget();
-                            ForgeStep[] lastSteps = MAID_FORGE.getAutoLastSteps(recipe.getRules());
-                            int last = this.getStepValue(lastSteps, 0);
-                            int secondLast = this.getStepValue(lastSteps, 1);
-                            int thirdLast = this.getStepValue(lastSteps, 2);
-                            int delta = targetWork - last - secondLast - thirdLast - currentWork;
-                            if (delta == 0) {
-                                this.handleAlign(player, lastSteps, maidStack);
-                            } else {
-                                work(player, MAID_FORGE.findForgeStep(delta));
+                    if(hammer.getDamageValue() != hammer.getMaxDamage() -1) {
+                        FakePlayer player = new FakePlayer((ServerLevel) level, new GameProfile(uuid, "Maid"));
+                        player.setPos(entity.position());
+                        player.setItemInHand(InteractionHand.MAIN_HAND, hammer);
+                        Forging forging = ForgingCapability.get(stack);
+                        if(forging != null && forging.getWorkTarget() != 0) {
+                            AnvilRecipe recipe = forging.getRecipe(level);
+                            if(recipe != null){
+                                int currentWork = forging.getWork();
+                                int targetWork = forging.getWorkTarget();
+                                ForgeStep[] lastSteps = MAID_FORGE.getAutoLastSteps(recipe.getRules());
+                                int last = this.getStepValue(lastSteps, 0);
+                                int secondLast = this.getStepValue(lastSteps, 1);
+                                int thirdLast = this.getStepValue(lastSteps, 2);
+                                int delta = targetWork - last - secondLast - thirdLast - currentWork;
+                                if (delta == 0) {
+                                    this.handleAlign(player, lastSteps, maidStack);
+                                } else {
+                                    work(player, MAID_FORGE.findForgeStep(delta));
+                                }
                             }
                         }
+                        player.kill();
                     }
-                    player.kill();
                 }
             }
         }
@@ -368,7 +377,6 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
             return;
         }
 
-        List<AnvilRecipe> recipes = AnvilRecipe.getAll(this.level, stack, this.getTier());
         if (recipes.isEmpty()) {
             return;
         }

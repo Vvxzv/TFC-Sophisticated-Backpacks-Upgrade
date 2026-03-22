@@ -8,9 +8,9 @@ import net.minecraft.world.level.Level;
 
 public interface IForge {
 
-    boolean isValidMaid(Level level, ItemStack stack);
+    boolean isValidMaid(Level level, ItemStack maidStack);
 
-    ItemStack getMaidMainHandItem(Level level, ItemStack stack);
+    ItemStack getMaidMainHandItem(Level level, ItemStack maidStack);
 
     long perTicks();
 
@@ -18,7 +18,7 @@ public interface IForge {
 
     int getPerfectForgeFavorability(int stage);
 
-     int getFavorability(Level level, ItemStack stack);
+     int getFavorability(Level level, ItemStack maidStack);
 
     ForgeStep findForgeStep(int delta);
 }

@@ -8,6 +8,7 @@ import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.capabilities.forge.ForgeRule;
 import net.dries007.tfc.common.capabilities.forge.ForgeStep;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.vvxzv.maidforge.Config;
@@ -16,10 +17,10 @@ import net.vvxzv.maidforge.utils.ForgeUtil;
 import net.vvxzv.tfcsbu.common.utils.GuiUtils;
 
 public class MaidForgeHandle implements IForge{
-    private EntityMaid getMaid(Level level, ItemStack stack) {
+    private EntityMaid getMaid(Level level, ItemStack maidStack) {
         EntityMaid maid = InitEntities.MAID.get().create(level);
-        if(stack.getItem() instanceof ItemSmartSlab) {
-            CompoundTag maidData = AbstractStoreMaidItem.getMaidData(stack);
+        if(maidStack.getItem() instanceof ItemSmartSlab) {
+            CompoundTag maidData = AbstractStoreMaidItem.getMaidData(maidStack);
             if (maid != null) {
                 maid.load(maidData);
                 return maid;
@@ -29,8 +30,8 @@ public class MaidForgeHandle implements IForge{
     }
 
     @Override
-    public boolean isValidMaid(Level level, ItemStack stack) {
-        EntityMaid maid = this.getMaid(level, stack);
+    public boolean isValidMaid(Level level, ItemStack maidStack) {
+        EntityMaid maid = this.getMaid(level, maidStack);
         if(maid != null) {
             boolean isTask = maid.getTask().getUid().equals(GuiUtils.rl(MaidForge.MODID, "anvil_forge_task"));
             boolean isTool = maid.getMainHandItem().is(TFCTags.Items.HAMMERS);
@@ -40,8 +41,8 @@ public class MaidForgeHandle implements IForge{
     }
 
     @Override
-    public ItemStack getMaidMainHandItem(Level level, ItemStack stack) {
-        EntityMaid maid = this.getMaid(level, stack);
+    public ItemStack getMaidMainHandItem(Level level, ItemStack maidStack) {
+        EntityMaid maid = this.getMaid(level, maidStack);
         if (maid != null) {
             return maid.getMainHandItem();
         }
@@ -64,8 +65,8 @@ public class MaidForgeHandle implements IForge{
     }
 
     @Override
-    public int getFavorability(Level level, ItemStack stack) {
-        EntityMaid maid = this.getMaid(level, stack);
+    public int getFavorability(Level level, ItemStack maidStack) {
+        EntityMaid maid = this.getMaid(level, maidStack);
         if (maid != null) {
             return maid.getFavorability();
         }
