@@ -80,25 +80,11 @@ public class FridgeUpgradeLogic {
         if(getInventory() != null && level.getGameTime() % 20L == 0L){
             ItemStackHandler handler = getInventory();
 
-            ItemStack battery = LogicHelper.findBattery(this.storageWrapper);
-
-            boolean isElectricity = false;
-
-            if(this.isPowered() && battery != null){
-                CompoundTag batteryTag = battery.getOrCreateTag();
-                if(batteryTag.contains("energyStored")){
-                    int energyStored = batteryTag.getInt("energyStored");
-                    if(energyStored >= 10) {
-                        batteryTag.putInt("energyStored", energyStored - 10);
-                        battery.setTag(batteryTag);
-                        isElectricity = true;
-                    }
-                }
-            }
+            boolean isConsumeElectricity = LogicHelper.consumeElectricity(this.storageWrapper, 10, this.isPowered(), false);
 
             for (int i = 0; i < handler.getSlots(); i++){
                 ItemStack itemStack = handler.getStackInSlot(i);
-                if(isElectricity){
+                if(isConsumeElectricity){
                     FoodCapability.removeTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
                     FoodCapability.applyTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
                 } else {

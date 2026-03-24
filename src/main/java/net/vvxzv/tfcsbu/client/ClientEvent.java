@@ -11,10 +11,10 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackBlockEntityRenderer;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.blockentity.UBackpackBlockEntity;
-import net.vvxzv.tfcsbu.common.register.UBlock;
-import net.vvxzv.tfcsbu.common.register.UBlockEntity;
-import net.vvxzv.tfcsbu.common.register.UItem;
+import net.vvxzv.tfcsbu.common.block.entity.UBackpackBlockEntity;
+import net.vvxzv.tfcsbu.common.registry.UBlock;
+import net.vvxzv.tfcsbu.common.registry.UBlockEntity;
+import net.vvxzv.tfcsbu.common.registry.UItem;
 
 @Mod.EventBusSubscriber(modid = TFCSBU.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvent {

@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common.register;
+package net.vvxzv.tfcsbu.common.registry;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;

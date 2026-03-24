@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common.register;
+package net.vvxzv.tfcsbu.common.registry;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
