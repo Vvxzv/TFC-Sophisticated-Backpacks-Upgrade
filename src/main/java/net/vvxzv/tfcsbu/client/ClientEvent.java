@@ -1,13 +1,13 @@
 package net.vvxzv.tfcsbu.client;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackBlockEntityRenderer;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.vvxzv.tfcsbu.TFCSBU;
@@ -16,7 +16,8 @@ import net.vvxzv.tfcsbu.common.registry.UBlock;
 import net.vvxzv.tfcsbu.common.registry.UBlockEntity;
 import net.vvxzv.tfcsbu.common.registry.UItem;
 
-@Mod.EventBusSubscriber(modid = TFCSBU.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@SuppressWarnings("removal")
+@EventBusSubscriber(modid = TFCSBU.MODID, bus = EventBusSubscriber.Bus.MOD , value = Dist.CLIENT)
 public class ClientEvent {
 
     @SubscribeEvent
@@ -25,14 +26,13 @@ public class ClientEvent {
             if (layer > 1 || !(backpack.getItem() instanceof BackpackItem)) {
                 return -1;
             }
-            return backpack.getCapability(CapabilityBackpackWrapper.getCapabilityInstance()).map(backpackWrapper -> {
-                if (layer == 0) {
-                    return backpackWrapper.getMainColor();
-                } else if (layer == 1) {
-                    return backpackWrapper.getAccentColor();
-                }
-                return -1;
-            }).orElse(BackpackWrapper.DEFAULT_CLOTH_COLOR);
+            IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(backpack);
+            if (layer == 0) {
+                return backpackWrapper.getMainColor();
+            } else if (layer == 1) {
+                return backpackWrapper.getAccentColor();
+            }
+            return -1;
         }, UItem.BISMUTH_BRONZE_BACKPACK.get(), UItem.BRONZE_BACKPACK.get(), UItem.BLACK_BRONZE_BACKPACK.get(), UItem.WROUGHT_IRON_BACKPACK.get(), UItem.STEEL_BACKPACK.get(), UItem.BLACK_STEEL_BACKPACK.get());
     }
 
@@ -49,7 +49,7 @@ public class ClientEvent {
     }
 
     private static int getDefaultColor(int tintIndex) {
-        return tintIndex == 0 ? BackpackWrapper.DEFAULT_CLOTH_COLOR : BackpackWrapper.DEFAULT_BORDER_COLOR;
+        return tintIndex == 0 ? BackpackWrapper.DEFAULT_MAIN_COLOR : BackpackWrapper.DEFAULT_ACCENT_COLOR;
     }
 
     @SubscribeEvent

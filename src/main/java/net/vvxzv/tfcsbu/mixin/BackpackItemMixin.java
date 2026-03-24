@@ -1,16 +1,18 @@
 package net.vvxzv.tfcsbu.mixin;
 
-import net.dries007.tfc.common.capabilities.size.IItemSize;
-import net.dries007.tfc.common.capabilities.size.Size;
-import net.dries007.tfc.common.capabilities.size.Weight;
+import net.dries007.tfc.common.component.size.IItemSize;
+import net.dries007.tfc.common.component.size.Size;
+import net.dries007.tfc.common.component.size.Weight;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
-import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
+import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
+import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeHandler;
 import net.vvxzv.tfcsbu.Config;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mixin(BackpackItem.class)
 public class BackpackItemMixin implements IItemSize {
@@ -31,31 +33,40 @@ public class BackpackItemMixin implements IItemSize {
 
     @Override
     public Weight getWeight(ItemStack itemStack) {
-        AtomicBoolean veryHeavy = new AtomicBoolean(false);
-        itemStack.getCapability(CapabilityBackpackWrapper.getCapabilityInstance()).ifPresent((w) -> {
-            int uSlots = w.getUpgradeHandler().getSlots();
-            int uCount = 0;
-            for (int i = 0; i < uSlots; i++){
-                if(!w.getUpgradeHandler().getStackInSlot(i).isEmpty()){
-                    uCount ++;
-                }
+        boolean veryHeavy;
+        IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(itemStack);
+        UpgradeHandler upgradeHandler = backpackWrapper.getUpgradeHandler();
+        int upgradeCount = 0;
+        for (int i = 0; i < upgradeHandler.getSlots(); i++) {
+            ItemStack stack = upgradeHandler.getStackInSlot(i);
+            if(!stack.isEmpty()) {
+                upgradeCount++;
             }
-            if(uCount > getUpgradeCount() - 1) veryHeavy.set(true);
+        }
+        veryHeavy = upgradeCount >= getUpgradeCount();
 
-            if(!veryHeavy.get()){
-                int iSlots = w.getInventoryHandler().getSlots();
-                int iCount = 0;
-                for (int i = 0; i < iSlots; i++){
-                    if(!w.getInventoryHandler().getSlotStack(i).isEmpty()) iCount++;
+        if(!veryHeavy) {
+            try {
+                InventoryHandler handler = backpackWrapper.getInventoryHandler();
+                int count = 0;
+                for (int i = 0; i < handler.getSlots(); i++) {
+                    ItemStack stack = handler.getStackInSlot(i);
+                    if(!stack.isEmpty()) {
+                        count++;
+                    }
+                    if(count > getSlotsCount()) {
+                        veryHeavy = true;
+                        break;
+                    }
                 }
-                if(iCount > getSlotsCount()) veryHeavy.set(true);
+            } catch (Exception ignored) {
             }
-        });
-        return veryHeavy.get()? Weight.VERY_HEAVY: Weight.HEAVY;
+        }
+        return veryHeavy? Weight.VERY_HEAVY: Weight.HEAVY;
     }
 
     @Override
-    public int getDefaultStackSize(ItemStack stack) {
-        return 1;
+    public void modifyWeight(ItemStack stack) {
+        stack.set(DataComponents.MAX_STACK_SIZE, 1);
     }
 }

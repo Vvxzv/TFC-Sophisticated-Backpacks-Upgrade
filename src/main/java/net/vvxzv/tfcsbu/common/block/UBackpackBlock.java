@@ -11,10 +11,6 @@ import net.vvxzv.tfcsbu.common.block.entity.UBackpackBlockEntity;
 import net.vvxzv.tfcsbu.common.registry.UBlockEntity;
 
 public class UBackpackBlock extends BackpackBlock {
-    public UBackpackBlock(){
-        this(0.8F);
-    }
-
     public UBackpackBlock(float explosionResistance){
         super(explosionResistance);
     }
