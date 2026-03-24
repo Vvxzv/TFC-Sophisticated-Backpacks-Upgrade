@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common.register;
+package net.vvxzv.tfcsbu.common.registry;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -6,7 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.blockentity.UBackpackBlockEntity;
+import net.vvxzv.tfcsbu.common.block.entity.UBackpackBlockEntity;
 
 public class UBlockEntity {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, TFCSBU.MODID);

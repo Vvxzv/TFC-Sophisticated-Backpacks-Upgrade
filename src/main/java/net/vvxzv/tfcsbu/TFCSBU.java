@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.vvxzv.tfcsbu.common.register.*;
+import net.vvxzv.tfcsbu.common.registry.*;
 import org.slf4j.Logger;
 
 @Mod(TFCSBU.MODID)

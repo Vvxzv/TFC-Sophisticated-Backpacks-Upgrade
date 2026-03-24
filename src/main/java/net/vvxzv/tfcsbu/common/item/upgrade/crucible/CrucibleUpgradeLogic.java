@@ -28,6 +28,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -230,10 +233,10 @@ public class CrucibleUpgradeLogic {
             float temp = 1;
 
             if(this.isPowered()) {
-                if(consumeElectricity(true)) {
-                    consumeElectricity(false);
+                int energyToConsume = (int) (this.getTemperature() * 0.02F) + 1;
+                if(LogicHelper.consumeElectricity(this.storageWrapper, energyToConsume, this.isPowered(), false)) {
                     this.setBurnTime(calendarTick + 10L);
-                    temp = 2;
+                    temp = 3;
                 } else {
                     this.setMaxTemperature(0);
                 }
@@ -446,7 +449,8 @@ public class CrucibleUpgradeLogic {
             this.setMaxTemperature(2800);
             setLocked(false);
         } else {
-            if(this.isPowered() && consumeElectricity(true)){
+            int energyToConsume = (int) (this.getTemperature() * 0.02F) + 1;
+            if(LogicHelper.consumeElectricity(this.storageWrapper, energyToConsume, this.isPowered(), true)){
                 this.setMaxTemperature(this.getTemperature());
                 setLocked(true);
             }
@@ -470,27 +474,6 @@ public class CrucibleUpgradeLogic {
         tag.putBoolean("isLocked", lock);
         this.isLocked = lock;
         save();
-    }
-
-    private boolean consumeElectricity(boolean simulate) {
-        ItemStack battery = LogicHelper.findBattery(this.storageWrapper);
-
-        boolean isElectricity = false;
-
-        if(this.isPowered() && battery != null){
-            CompoundTag batteryTag = battery.getOrCreateTag();
-            if(batteryTag.contains("energyStored")){
-                int energyStored = batteryTag.getInt("energyStored");
-                if(energyStored >= (int) (this.getTemperature() * 0.02F) + 1) {
-                    if(!simulate){
-                        batteryTag.putInt("energyStored", energyStored - (int) (this.getTemperature() * 0.02F) - 1);
-                        battery.setTag(batteryTag);
-                    }
-                    isElectricity = true;
-                }
-            }
-        }
-        return isElectricity;
     }
 
     public boolean isMolten() {

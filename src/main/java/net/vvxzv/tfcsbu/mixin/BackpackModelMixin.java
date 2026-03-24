@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackModel;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.register.UItem;
+import net.vvxzv.tfcsbu.common.registry.UItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
