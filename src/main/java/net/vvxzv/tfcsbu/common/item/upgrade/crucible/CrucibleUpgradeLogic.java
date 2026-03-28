@@ -302,15 +302,16 @@ public class CrucibleUpgradeLogic {
     }
 
     private void handleTemperature(float added) {
-        CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.temperature = tag.getFloat("temperature") + added;
-        tag.putFloat("temperature", this.temperature);
-        save();
+        this.setTemperature(this.getTemperature() + added);
     }
 
     public float getTemperature() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.temperature = tag.getFloat("temperature");
+        if(tag.contains("temperature")) {
+            this.temperature = tag.getFloat("temperature");
+        } else {
+            this.setTemperature(0);
+        }
         return this.temperature;
     }
 
@@ -323,7 +324,11 @@ public class CrucibleUpgradeLogic {
 
     public float getMaxTemperature() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.maxTemperature = tag.getFloat("maxTemperature");
+        if(tag.contains("maxTemperature")) {
+            this.maxTemperature = tag.getFloat("maxTemperature");
+        } else {
+            this.setMaxTemperature(0);
+        }
         return this.maxTemperature;
     }
 
@@ -336,7 +341,11 @@ public class CrucibleUpgradeLogic {
 
     public long getBurnTime() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.burnTime = tag.getLong("burnTime");
+        if(tag.contains("burnTime")) {
+            this.burnTime = tag.getLong("burnTime");
+        } else {
+            this.setBurnTime(0);
+        }
         return this.burnTime;
     }
 
@@ -360,7 +369,11 @@ public class CrucibleUpgradeLogic {
 
     public boolean hasBellows() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.hasBellows = tag.getBoolean("hasBellows");
+        if(tag.contains("hasBellows")) {
+            this.hasBellows = tag.getBoolean("hasBellows");
+        } else {
+            this.setHasBellows(false);
+        }
         return this.hasBellows;
     }
 
@@ -381,7 +394,11 @@ public class CrucibleUpgradeLogic {
 
     public boolean isTriggerBellows() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.isTriggerBellows = tag.getBoolean("isTriggerBellows");
+        if(tag.contains("isTriggerBellows")) {
+            this.isTriggerBellows = tag.getBoolean("isTriggerBellows");
+        } else {
+            this.setTriggerBellows(false);
+        }
         return this.isTriggerBellows;
     }
 
@@ -394,7 +411,11 @@ public class CrucibleUpgradeLogic {
 
     public int getBellowsTicks() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.bellowsTicks = tag.getInt("bellowsTicks");
+        if(tag.contains("bellowsTicks")) {
+            this.bellowsTicks = tag.getInt("bellowsTicks");
+        } else {
+            this.setBellowsTicks(0);
+        }
         return this.bellowsTicks;
     }
 
@@ -406,14 +427,7 @@ public class CrucibleUpgradeLogic {
     }
 
     public void handlePowerSwitch() {
-        CompoundTag tag = this.upgrade.getOrCreateTag();
-        if(tag.contains("isPowered")){
-            boolean isPowered = tag.getBoolean("isPowered");
-            setPowered(!isPowered);
-        } else {
-            tag.putBoolean("isPowered", true);
-            setPowered(true);
-        }
+        this.setPowered(!this.isPowered());
 
         if(this.isPowered()) {
             this.setMaxTemperature(2800);
@@ -434,12 +448,10 @@ public class CrucibleUpgradeLogic {
 
     public boolean isPowered() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        if(tag.contains("isPowered")){
-            boolean isPowered = tag.getBoolean("isPowered");
-            setPowered(isPowered);
+        if(tag.contains("isPowered")) {
+            this.isPowered = tag.getBoolean("isPowered");
         } else {
-            tag.putBoolean("isPowered", false);
-            setPowered(false);
+            this.setPowered(false);
         }
         return this.isPowered;
     }
@@ -459,12 +471,10 @@ public class CrucibleUpgradeLogic {
 
     public boolean isLocked() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        if(tag.contains("isLocked")){
-            boolean isLocked = tag.getBoolean("isLocked");
-            setLocked(isLocked);
+        if(tag.contains("isLocked")) {
+            this.isLocked = tag.getBoolean("isLocked");
         } else {
-            tag.putBoolean("isLocked", false);
-            setLocked(false);
+            this.setLocked(false);
         }
         return this.isLocked;
     }

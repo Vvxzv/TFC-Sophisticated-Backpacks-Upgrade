@@ -27,7 +27,6 @@ import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import net.vvxzv.tfcsbu.common.UFoodTrait;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
-import net.vvxzv.tfcsbu.compat.firmalife.DefaultOvenBakingHandler;
 import net.vvxzv.tfcsbu.compat.firmalife.FLOvenBakingHandler;
 import net.vvxzv.tfcsbu.compat.firmalife.OvenBakingHandler;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +45,7 @@ public class OvenUpgradeLogic {
 
     private static final OvenBakingHandler BAKING_HANDLER =
             ModList.get().isLoaded("firmalife")?
-                    new FLOvenBakingHandler() : new DefaultOvenBakingHandler();
+                    new FLOvenBakingHandler() : null;
 
     public OvenUpgradeLogic(ItemStack upgrade, Consumer<ItemStack> saveHandler){
         this.upgrade = upgrade;
@@ -144,9 +143,11 @@ public class OvenUpgradeLogic {
                             FoodCapability.applyTrait(output, UFoodTrait.OVEN_BAKED);
                             handler.setStackInSlot(i, output);
                         } else {
-                            ItemStack bakedOutput = BAKING_HANDLER.handleBaking(itemStack, itemTemp, inventory, level);
-                            if (bakedOutput != null) {
-                                handler.setStackInSlot(i, bakedOutput);
+                            if(BAKING_HANDLER != null) {
+                                ItemStack bakedOutput = BAKING_HANDLER.handleBaking(itemStack, itemTemp, inventory, level);
+                                if (bakedOutput != null) {
+                                    handler.setStackInSlot(i, bakedOutput);
+                                }
                             }
                         }
                     }
@@ -156,15 +157,16 @@ public class OvenUpgradeLogic {
     }
 
     private void handleTemperature(float added){
-        CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.temperature = tag.getFloat("temperature") + added;
-        tag.putFloat("temperature", this.temperature);
-        save();
+        this.setTemperature(this.getTemperature() + added);
     }
 
     public float getTemperature(){
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.temperature = tag.getFloat("temperature");
+        if(tag.contains("temperature")) {
+            this.temperature = tag.getFloat("temperature");
+        } else {
+            this.setTemperature(0);
+        }
         return this.temperature;
     }
 
@@ -177,7 +179,11 @@ public class OvenUpgradeLogic {
 
     public float getMaxTemperature() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.maxTemperature = tag.getFloat("maxTemperature");
+        if(tag.contains("maxTemperature")) {
+            this.maxTemperature = tag.getFloat("maxTemperature");
+        } else {
+            this.setMaxTemperature(0);
+        }
         return this.maxTemperature;
     }
 
@@ -190,7 +196,11 @@ public class OvenUpgradeLogic {
 
     public long getBurnTime(){
         CompoundTag tag = this.upgrade.getOrCreateTag();
-        this.burnTime = tag.getLong("burnTime");
+        if(tag.contains("burnTime")) {
+            this.burnTime = tag.getLong("burnTime");
+        } else {
+            this.setBurnTime(0);
+        }
         return this.burnTime;
     }
 
