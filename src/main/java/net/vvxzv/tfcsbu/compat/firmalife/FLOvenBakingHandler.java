@@ -17,8 +17,7 @@ public class FLOvenBakingHandler implements OvenBakingHandler{
                 FoodCapability.applyTrait(output, FLFoodTraits.OVEN_BAKED);
                 return output;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return null;
     }

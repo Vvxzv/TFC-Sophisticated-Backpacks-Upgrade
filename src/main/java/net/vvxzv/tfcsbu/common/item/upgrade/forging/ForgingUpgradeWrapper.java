@@ -30,6 +30,6 @@ public class ForgingUpgradeWrapper extends UpgradeWrapperBase<ForgingUpgradeWrap
 
     @Override
     public void tick(@Nullable Entity entity, Level level, BlockPos blockPos) {
-        this.logic.tick(level, entity);
+        this.logic.tick(entity, level, blockPos);
     }
 }

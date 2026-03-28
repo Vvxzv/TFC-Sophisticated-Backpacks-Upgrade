@@ -16,6 +16,7 @@ import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.advancements.TFCAdvancements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -90,49 +91,13 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
         ItemStack stack = this.getItem();
         Forging forging = ForgingCapability.get(stack);
         if(forging != null) {
-            int target = forging.getWorkTarget();
-            int work = forging.getWork();
-            GuiHelper.blit(guiGraphics, target + guiX - 1, guiY + 86, TARGET);
-            GuiHelper.blit(guiGraphics, work + guiX - 1, guiY + 92, WORK);
+            this.showTargetAndWork(forging, guiGraphics, guiX, guiY);
 
-            ForgeSteps steps = forging.getSteps();
             Level level = Minecraft.getInstance().level;
             if(level != null) {
                 AnvilRecipe recipe = forging.getRecipe(level);
                 if (recipe != null && recipe.isCorrectTier(this.getTier())) {
-                    ForgeRule[] rules = recipe.getRules();
-                    for(int i = 0; i < rules.length; ++i) {
-                        ForgeRule rule = rules[i];
-                        if (rule != null) {
-                            int xOffset = i * 19;
-                            guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 52 + xOffset, guiY, 10, 10, rule.iconX(), rule.iconY(), 32, 32, 256, 256);
-                            if (rule.matches(steps)) {
-                                RenderSystem.setShaderColor(0.0F, 0.6F, 0.2F, 1.0F);
-                            } else {
-                                RenderSystem.setShaderColor(1.0F, 0.4F, 0.0F, 1.0F);
-                            }
-
-                            guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 47 + xOffset, guiY - 3, 198, rule.overlayY(), 20, 22);
-                            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                        }
-                    }
-                    for(int i = 0; i < rules.length; ++i) {
-                        ForgeRule rule = rules[i];
-                        if (rule != null) {
-                            int xOffset = i * 19;
-                            new CustomTooltipComponent(52 + xOffset, 0, 10, 10) {
-                                @Override
-                                public Component[] getComponents() {
-                                    return new Component[]{rule.getDescriptionId()};
-                                }
-
-                                @Override
-                                public boolean hasTooltip() {
-                                    return true;
-                                }
-                            }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
-                        }
-                    }
+                    this.showRule(recipe, forging, guiGraphics, guiX, guiY, mouseX, mouseY);
 
                     RegistryAccess access = ClientHelpers.getLevelOrThrow().registryAccess();
                     ItemStack resultItem = recipe.getResultItem(access);
@@ -152,6 +117,7 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
                     GuiHelper.blit(guiGraphics, guiX + 126, guiY + 6, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(236, 0), Dimension.SQUARE_16));
                 }
 
+                ForgeSteps steps = forging.getSteps();
                 ForgeStep[] stepSequence = new ForgeStep[]{steps.last(), steps.secondLast(), steps.thirdLast()};
                 for(int i = 0; i < 3; ++i) {
                     ForgeStep step = stepSequence[i];
@@ -166,7 +132,51 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
         }
     }
 
-    public void tick(Level level, Entity entity) {
+    private void showTargetAndWork(Forging forging, GuiGraphics guiGraphics, int guiX, int guiY) {
+        int target = forging.getWorkTarget();
+        int work = forging.getWork();
+        GuiHelper.blit(guiGraphics, target + guiX + 1, guiY + 86, TARGET);
+        GuiHelper.blit(guiGraphics, work + guiX + 1, guiY + 92, WORK);
+    }
+
+    private void showRule(AnvilRecipe recipe, Forging forging, GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
+        ForgeSteps steps = forging.getSteps();
+        ForgeRule[] rules = recipe.getRules();
+        for(int i = 0; i < rules.length; ++i) {
+            ForgeRule rule = rules[i];
+            if (rule != null) {
+                int xOffset = i * 19;
+                guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 52 + xOffset, guiY, 10, 10, rule.iconX(), rule.iconY(), 32, 32, 256, 256);
+                if (rule.matches(steps)) {
+                    RenderSystem.setShaderColor(0.0F, 0.6F, 0.2F, 1.0F);
+                } else {
+                    RenderSystem.setShaderColor(1.0F, 0.4F, 0.0F, 1.0F);
+                }
+
+                guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 47 + xOffset, guiY - 3, 198, rule.overlayY(), 20, 22);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            }
+        }
+        for(int i = 0; i < rules.length; ++i) {
+            ForgeRule rule = rules[i];
+            if (rule != null) {
+                int xOffset = i * 19;
+                new CustomTooltipComponent(52 + xOffset, 0, 10, 10) {
+                    @Override
+                    public Component[] getComponents() {
+                        return new Component[]{rule.getDescriptionId()};
+                    }
+
+                    @Override
+                    public boolean hasTooltip() {
+                        return true;
+                    }
+                }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
+            }
+        }
+    }
+
+    public void tick(Entity entity, Level level, BlockPos blockPos) {
         this.level = level;
         ItemStack stack = this.getItem();
         if(!stack.isEmpty()) {
@@ -183,7 +193,11 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
                     ItemStack hammer = MAID_FORGE.getMaidMainHandItem(level, maidStack);
                     if(hammer.getDamageValue() != hammer.getMaxDamage() -1) {
                         FakePlayer player = new FakePlayer((ServerLevel) level, new GameProfile(uuid, "Maid"));
-                        player.setPos(entity.position());
+                        if(entity != null) {
+                            player.setPos(entity.position());
+                        } else {
+                            player.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                        }
                         player.setItemInHand(InteractionHand.MAIN_HAND, hammer);
                         Forging forging = ForgingCapability.get(stack);
                         if(forging != null && forging.getWorkTarget() != 0) {
@@ -372,6 +386,10 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     }
 
     public void selectRecipe() {
+        if(recipes.size() == 1) {
+            return;
+        }
+
         ItemStack stack = this.getItem();
         if(stack.isEmpty()) {
             return;

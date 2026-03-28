@@ -10,7 +10,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 
 public class LogicHelper {
     public static void setFuel(ItemStackHandler handler, int fromSlot, int toSlot) {
-        for (int i = fromSlot; i < toSlot; i++){
+        for (int i = fromSlot; i < toSlot; i++) {
             ItemStack itemStack1 = handler.getStackInSlot(i);
             ItemStack itemStack2 = handler.getStackInSlot(i + 1);
             if(!itemStack1.isEmpty() && itemStack2.isEmpty()){

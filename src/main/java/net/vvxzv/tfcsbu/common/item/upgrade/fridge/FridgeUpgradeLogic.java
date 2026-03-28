@@ -82,9 +82,9 @@ public class FridgeUpgradeLogic {
 
             boolean isConsumeElectricity = LogicHelper.consumeElectricity(this.storageWrapper, 10, this.isPowered(), false);
 
-            for (int i = 0; i < handler.getSlots(); i++){
+            for (int i = 0; i < handler.getSlots(); i++) {
                 ItemStack itemStack = handler.getStackInSlot(i);
-                if(isConsumeElectricity){
+                if(isConsumeElectricity) {
                     FoodCapability.removeTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
                     FoodCapability.applyTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
                 } else {
@@ -96,15 +96,7 @@ public class FridgeUpgradeLogic {
     }
 
     public void handlePowerSwitch() {
-        CompoundTag tag = this.upgrade.getOrCreateTag();
-        if(tag.contains("isPowered")){
-            boolean isPowered = tag.getBoolean("isPowered");
-            setPowered(!isPowered);
-        } else {
-            tag.putBoolean("isPowered", true);
-            setPowered(true);
-        }
-        save();
+        this.setPowered(!this.isPowered());
     }
 
     public void setPowered(boolean power) {
@@ -117,11 +109,9 @@ public class FridgeUpgradeLogic {
     public boolean isPowered() {
         CompoundTag tag = this.upgrade.getOrCreateTag();
         if(tag.contains("isPowered")){
-            boolean isPowered = tag.getBoolean("isPowered");
-            setPowered(isPowered);
+            this.isPowered = tag.getBoolean("isPowered");
         } else {
-            tag.putBoolean("isPowered", false);
-            setPowered(false);
+            this.setPowered(false);
         }
         return this.isPowered;
     }
