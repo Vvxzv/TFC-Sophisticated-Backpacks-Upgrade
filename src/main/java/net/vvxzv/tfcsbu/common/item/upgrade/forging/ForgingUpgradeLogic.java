@@ -129,6 +129,8 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
                 int xOffset = i * 19;
                 guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 50 + xOffset, guiY + 22, 10, 10, step.iconX(), step.iconY(), 16, 16, 256, 256);
             }
+        } else {
+            GuiHelper.blit(guiGraphics, guiX + 126, guiY + 6, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(238, 1), Dimension.SQUARE_16));
         }
     }
 
