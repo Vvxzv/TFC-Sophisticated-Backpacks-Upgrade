@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:refill_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		" a ",
+		"aba",
+		"cdc"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"b": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"c": {
+			"item": "minecraft:redstone"
+		},
+		"d": {
+			"tag": "c:chests"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

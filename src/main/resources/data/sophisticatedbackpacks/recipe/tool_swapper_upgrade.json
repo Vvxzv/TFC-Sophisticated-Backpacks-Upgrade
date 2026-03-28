@@ -1,0 +1,39 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:tool_swapper_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"cde",
+		"fgf"
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:redstone"
+		},
+		"b": {
+			"tag": "minecraft:swords"
+		},
+		"c": {
+			"tag": "minecraft:axes"
+		},
+		"d": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"e": {
+			"tag": "minecraft:shovels"
+		},
+		"f": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"g": {
+			"tag": "minecraft:pickaxes"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

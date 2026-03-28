@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:jukebox_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		" a ",
+		"bcb",
+		" d "
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:jukebox"
+		},
+		"b": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"d": {
+			"item": "minecraft:redstone"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

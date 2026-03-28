@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:void_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"bcb",
+		"aba"
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:redstone"
+		},
+		"b": {
+			"tag": "c:obsidians"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

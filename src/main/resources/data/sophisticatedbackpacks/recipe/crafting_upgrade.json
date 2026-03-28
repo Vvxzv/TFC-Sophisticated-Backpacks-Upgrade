@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:crafting_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		" a ",
+		"bcb",
+		" d "
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:crafting_table"
+		},
+		"b": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"d": {
+			"tag": "c:chests"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

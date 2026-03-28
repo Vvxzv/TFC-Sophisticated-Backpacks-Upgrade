@@ -1,0 +1,21 @@
+{
+	"type": "sophisticatedbackpacks:backpack_upgrade",
+	"category": "misc",
+	"key": {
+		"a": {
+			"item": "tfc:metal/ingot/steel"
+		},
+		"b": {
+			"item": "tfcsbu:wrought_iron_backpack"
+		}
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"result": {
+		"id": "tfcsbu:steel_backpack",
+		"count": 1
+	}
+}

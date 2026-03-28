@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -17,16 +18,37 @@ import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.items.wrapper.EmptyItemHandler;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import net.p3pp3rf1y.sophisticatedbackpacks.Config;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
+import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeGuiManager;
+import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerRegistry;
+import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.stack.StackUpgradeItem;
 import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeContainer;
+import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeItem;
+import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeTab;
+import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeWrapper;
+import net.vvxzv.tfcsbu.common.item.upgrade.forging.ForgingUpgradeContainer;
+import net.vvxzv.tfcsbu.common.item.upgrade.forging.ForgingUpgradeItem;
+import net.vvxzv.tfcsbu.common.item.upgrade.forging.ForgingUpgradeTab;
+import net.vvxzv.tfcsbu.common.item.upgrade.forging.ForgingUpgradeWrapper;
+import net.vvxzv.tfcsbu.common.item.upgrade.fridge.FridgeUpgradeContainer;
+import net.vvxzv.tfcsbu.common.item.upgrade.fridge.FridgeUpgradeItem;
+import net.vvxzv.tfcsbu.common.item.upgrade.fridge.FridgeUpgradeTab;
+import net.vvxzv.tfcsbu.common.item.upgrade.fridge.FridgeUpgradeWrapper;
+import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeContainer;
+import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeItem;
+import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeTab;
+import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeWrapper;
 
 @SuppressWarnings("unused")
 public class UItem {
@@ -61,39 +83,39 @@ public class UItem {
         CauldronInteraction.WATER.map().put(STEEL_BACKPACK.get(), new BackpackCauldronInteraction());
         CauldronInteraction.WATER.map().put(BLACK_STEEL_BACKPACK.get(), new BackpackCauldronInteraction());
     }
-//
-//    public static final DeferredItem<Item> FRIDGE_UPGRADE = ITEMS.register("fridge_upgrade", () -> new FridgeUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
-//
-//    private static final UpgradeContainerType<FridgeUpgradeWrapper, FridgeUpgradeContainer> FRIDGE_TYPE = new UpgradeContainerType<>(FridgeUpgradeContainer::new);
-//
-//    public static final DeferredItem<Item> OVEN_UPGRADE = ITEMS.register("oven_upgrade", () -> new OvenUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
-//
-//    private static final UpgradeContainerType<OvenUpgradeWrapper, OvenUpgradeContainer> OVEN_TYPE = new UpgradeContainerType<>(OvenUpgradeContainer::new);
-//
-//    public static final DeferredItem<Item> CRUCIBLE_UPGRADE = ITEMS.register("crucible_upgrade", () -> new CrucibleUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
-//
-//    private static final UpgradeContainerType<CrucibleUpgradeWrapper, CrucibleUpgradeContainer> CRUCIBLE_TYPE = new UpgradeContainerType<>(CrucibleUpgradeContainer::new);
-//
-//    public static final DeferredItem<Item> FORGING_UPGRADE = ITEMS.register("forging_upgrade", () -> new ForgingUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
-//
-//    private static final UpgradeContainerType<ForgingUpgradeWrapper, ForgingUpgradeContainer> FORGING_TYPE = new UpgradeContainerType<>(ForgingUpgradeContainer::new);
-//
-//    public static void registerContainers(RegisterEvent event) {
-//        if (!event.getRegistryKey().equals(ForgeRegistries.Keys.MENU_TYPES)) {
-//            return;
-//        }
-//        UpgradeContainerRegistry.register(FRIDGE_UPGRADE.getId(), FRIDGE_TYPE);
-//        UpgradeContainerRegistry.register(OVEN_UPGRADE.getId(), OVEN_TYPE);
-//        UpgradeContainerRegistry.register(CRUCIBLE_UPGRADE.getId(), CRUCIBLE_TYPE);
-//        UpgradeContainerRegistry.register(FORGING_UPGRADE.getId(), FORGING_TYPE);
-//        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-//            UpgradeGuiManager.registerTab(FRIDGE_TYPE, FridgeUpgradeTab::new);
-//            UpgradeGuiManager.registerTab(OVEN_TYPE, OvenUpgradeTab::new);
-//            UpgradeGuiManager.registerTab(CRUCIBLE_TYPE, CrucibleUpgradeTab::new);
-//            UpgradeGuiManager.registerTab(FORGING_TYPE, ForgingUpgradeTab::new);
-//        });
-//    }
-//
+
+    public static final DeferredItem<Item> FRIDGE_UPGRADE = ITEMS.register("fridge_upgrade", () -> new FridgeUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
+
+    private static final UpgradeContainerType<FridgeUpgradeWrapper, FridgeUpgradeContainer> FRIDGE_TYPE = new UpgradeContainerType<>(FridgeUpgradeContainer::new);
+
+    public static final DeferredItem<Item> OVEN_UPGRADE = ITEMS.register("oven_upgrade", () -> new OvenUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
+
+    private static final UpgradeContainerType<OvenUpgradeWrapper, OvenUpgradeContainer> OVEN_TYPE = new UpgradeContainerType<>(OvenUpgradeContainer::new);
+
+    public static final DeferredItem<Item> CRUCIBLE_UPGRADE = ITEMS.register("crucible_upgrade", () -> new CrucibleUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
+
+    private static final UpgradeContainerType<CrucibleUpgradeWrapper, CrucibleUpgradeContainer> CRUCIBLE_TYPE = new UpgradeContainerType<>(CrucibleUpgradeContainer::new);
+
+    public static final DeferredItem<Item> FORGING_UPGRADE = ITEMS.register("forging_upgrade", () -> new ForgingUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
+
+    private static final UpgradeContainerType<ForgingUpgradeWrapper, ForgingUpgradeContainer> FORGING_TYPE = new UpgradeContainerType<>(ForgingUpgradeContainer::new);
+
+    public static void registerContainers(RegisterEvent event) {
+        if (event.getRegistryKey().equals(Registries.MENU)) {
+            UpgradeContainerRegistry.register(FRIDGE_UPGRADE.getId(), FRIDGE_TYPE);
+            UpgradeContainerRegistry.register(OVEN_UPGRADE.getId(), OVEN_TYPE);
+            UpgradeContainerRegistry.register(CRUCIBLE_UPGRADE.getId(), CRUCIBLE_TYPE);
+            UpgradeContainerRegistry.register(FORGING_UPGRADE.getId(), FORGING_TYPE);
+        }
+    }
+
+    public static void onMenuScreenRegister(RegisterMenuScreensEvent event) {
+        UpgradeGuiManager.registerTab(FRIDGE_TYPE, FridgeUpgradeTab::new);
+        UpgradeGuiManager.registerTab(OVEN_TYPE, OvenUpgradeTab::new);
+        UpgradeGuiManager.registerTab(CRUCIBLE_TYPE, CrucibleUpgradeTab::new);
+        UpgradeGuiManager.registerTab(FORGING_TYPE, ForgingUpgradeTab::new);
+    }
+
     public static final DeferredItem<StackUpgradeItem> STACK_UPGRADE_TIER_COPPER = ITEMS.register("stack_upgrade_tier_copper", () -> new StackUpgradeItem(2.0, Config.SERVER.maxUpgradesPerStorage));
 
     public static final DeferredItem<StackUpgradeItem> STACK_UPGRADE_TIER_BISMUTH_BRONZE = ITEMS.register("stack_upgrade_tier_bismuth_bronze", () -> new StackUpgradeItem(4.0, Config.SERVER.maxUpgradesPerStorage));

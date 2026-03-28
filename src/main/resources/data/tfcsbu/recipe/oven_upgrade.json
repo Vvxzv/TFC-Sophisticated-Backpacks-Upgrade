@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "tfcsbu:oven_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"ccc"
+	],
+	"key": {
+		"a": {
+			"tag": "c:bricks/normal"
+		},
+		"b": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"c": {
+			"tag": "minecraft:logs"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

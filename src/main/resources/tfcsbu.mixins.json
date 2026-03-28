@@ -4,7 +4,8 @@
   "package" : "net.vvxzv.tfcsbu.mixin",
   "compatibilityLevel" : "JAVA_21",
   "mixins" : [
-    "BackpackItemMixin"
+    "BackpackItemMixin",
+    "CuriosCompatClientMixin"
   ],
   "client" : [
   ],

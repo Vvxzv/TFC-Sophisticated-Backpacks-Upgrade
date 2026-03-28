@@ -41,7 +41,7 @@ neoForge {
     }
 
     // This line is optional. Access Transformers are automatically detected
-    // accessTransformers.add('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformers.from 'src/main/resources/META-INF/accesstransformer.cfg'
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -134,6 +134,8 @@ dependencies {
     runtimeOnly "curse.maven:patchouli-306770:6842247"
     // tfc
     implementation "curse.maven:terrafirmacraft-302973:7634816"
+    // firmalife
+    implementation "curse.maven:firmalife-453394:7790886"
 
     // JEI
     compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
@@ -150,13 +152,19 @@ dependencies {
     //jade
     implementation "curse.maven:jade-324717:6853386"
 
-    implementation "curse.maven:kubejs-tfc-841001:7453260"
-
     implementation "curse.maven:javascriptjs-1238318:6855084"
 
     implementation "curse.maven:curios-309927:6529130"
 
     implementation "curse.maven:just-enough-characters-250702:7320033"
+
+    //mek
+    implementation "curse.maven:mekanism-generators-268566:7621974"
+    implementation "curse.maven:mekanism-268560:7621971"
+
+    //maid
+    implementation "curse.maven:maid-please-help-me-forge-1399077:7588086"
+    implementation "curse.maven:touhou-little-maid-355044:7510722"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

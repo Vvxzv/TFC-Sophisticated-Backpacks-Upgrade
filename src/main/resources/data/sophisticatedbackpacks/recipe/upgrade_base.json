@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:upgrade_base",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"bcb",
+		"aba"
+	],
+	"key": {
+		"a": {
+			"tag": "c:strings"
+		},
+		"b": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"c": {
+			"tag": "c:leathers"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

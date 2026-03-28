@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:anvil_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"aca",
+		"ada"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_ingot/cast_iron"
+		},
+		"b": {
+			"tag": "c:gems/diamond"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"d": {
+			"tag": "c:chests"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

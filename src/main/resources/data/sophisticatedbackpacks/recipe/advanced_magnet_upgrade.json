@@ -1,0 +1,33 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:advanced_magnet_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"bcb",
+		"d e"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:ore/rich_magnetite"
+		},
+		"b": {
+			"item": "tfc:metal/ingot/wrought_iron"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:advanced_pickup_upgrade"
+		},
+		"d": {
+			"item": "minecraft:redstone"
+		},
+		"e": {
+			"item": "minecraft:lapis_lazuli"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

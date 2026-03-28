@@ -11,7 +11,7 @@ public class CreativeTab {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TFCSBU.MODID);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("tab", () -> CreativeModeTab.builder()
-            .icon(() -> UItem.BISMUTH_BRONZE_BACKPACK.get().getDefaultInstance())
+            .icon(() -> UItem.FRIDGE_UPGRADE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 UItem.ITEMS.getEntries().forEach(entries -> {
                     output.accept(entries.get());

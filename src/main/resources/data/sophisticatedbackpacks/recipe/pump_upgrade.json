@@ -1,0 +1,40 @@
+{
+	"neoforge:conditions": [
+		{
+			"type": "sophisticatedcore:item_enabled",
+			"itemRegistryName": "sophisticatedbackpacks:pump_upgrade"
+		}
+	],
+	"type": "sophisticatedcore:upgrade_next_tier",
+	"category": "misc",
+	"key": {
+		"B": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		},
+		"G": {
+			"tag": "c:glass_blocks"
+		},
+		"P": {
+			"item": "minecraft:piston"
+		},
+		"S": {
+			"item": "minecraft:sticky_piston"
+		},
+		"U": {
+			"tag": "c:buckets"
+		}
+	},
+	"pattern": [
+		"GUG",
+		"PBS",
+		"GUG"
+	],
+	"result": {
+		"count": 1,
+		"id": "sophisticatedbackpacks:pump_upgrade"
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

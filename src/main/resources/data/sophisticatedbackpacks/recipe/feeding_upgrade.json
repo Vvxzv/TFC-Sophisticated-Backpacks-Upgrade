@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:feeding_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		" a ",
+		"bcb",
+		" a "
+	],
+	"key": {
+		"a": {
+			"tag": "c:foods/apple"
+		},
+		"b": {
+			"tag": "c:ingots/gold"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

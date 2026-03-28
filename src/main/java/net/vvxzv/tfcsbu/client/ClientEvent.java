@@ -1,14 +1,22 @@
 package net.vvxzv.tfcsbu.client;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.common.util.Lazy;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackBlockEntityRenderer;
+import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackItemStackRenderer;
+import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.vvxzv.tfcsbu.TFCSBU;
 import net.vvxzv.tfcsbu.common.block.entity.UBackpackBlockEntity;
@@ -55,5 +63,16 @@ public class ClientEvent {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(UBlockEntity.BACKPACK.get(), (context) -> new BackpackBlockEntityRenderer());
+    }
+
+    @SubscribeEvent
+    public static void registerBackpackClientExtension(RegisterClientExtensionsEvent event) {
+        event.registerItem(new IClientItemExtensions() {
+            private final Lazy<BlockEntityWithoutLevelRenderer> ister = Lazy.of(() -> new BackpackItemStackRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels()));
+
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return this.ister.get();
+            }
+        }, UItem.BISMUTH_BRONZE_BACKPACK.get(), UItem.BRONZE_BACKPACK.get(), UItem.BLACK_BRONZE_BACKPACK.get(), UItem.WROUGHT_IRON_BACKPACK.get(), UItem.STEEL_BACKPACK.get(), UItem.BLACK_STEEL_BACKPACK.get());
     }
 }

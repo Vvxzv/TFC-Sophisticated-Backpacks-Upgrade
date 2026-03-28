@@ -1,0 +1,21 @@
+{
+	"type": "sophisticatedbackpacks:backpack_upgrade",
+	"category": "misc",
+	"key": {
+		"a": {
+			"item": "tfc:metal/ingot/black_bronze"
+		},
+		"b": {
+			"item": "sophisticatedbackpacks:copper_backpack"
+		}
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"result": {
+		"id": "tfcsbu:black_bronze_backpack",
+		"count": 1
+	}
+}

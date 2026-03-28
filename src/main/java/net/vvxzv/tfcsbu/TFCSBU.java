@@ -6,10 +6,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.vvxzv.tfcsbu.common.registry.CreativeTab;
-import net.vvxzv.tfcsbu.common.registry.UBlock;
-import net.vvxzv.tfcsbu.common.registry.UBlockEntity;
-import net.vvxzv.tfcsbu.common.registry.UItem;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.vvxzv.tfcsbu.common.registry.*;
 import org.slf4j.Logger;
 
 @Mod(TFCSBU.MODID)
@@ -19,14 +17,21 @@ public class TFCSBU {
 
     public TFCSBU(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(TFCSBU::setup);
+        modEventBus.addListener(UItem::registerCapabilities);
+        modEventBus.addListener(UBlockEntity::registerCapabilities);
+        modEventBus.addListener(UItem::registerContainers);
 
+        if(FMLEnvironment.dist.isClient()){
+            modEventBus.addListener(UItem::onMenuScreenRegister);
+        }
+
+        UFoodTrait.TRAITS.register(modEventBus);
         UItem.ITEMS.register(modEventBus);
         UBlock.BLOCKS.register(modEventBus);
         UBlockEntity.BLOCK_ENTITY_TYPES.register(modEventBus);
         CreativeTab.TABS.register(modEventBus);
+        DataComponent.DATA_COMPONENT_TYPES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
-        modEventBus.addListener(UItem::registerCapabilities);
     }
 
     private static void setup(FMLCommonSetupEvent event) {

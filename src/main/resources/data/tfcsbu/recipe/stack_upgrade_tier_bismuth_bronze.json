@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "tfcsbu:stack_upgrade_tier_bismuth_bronze",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_sheet/bismuth_bronze"
+		},
+		"b": {
+			"item": "tfcsbu:stack_upgrade_tier_copper"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 5
+	}
+}

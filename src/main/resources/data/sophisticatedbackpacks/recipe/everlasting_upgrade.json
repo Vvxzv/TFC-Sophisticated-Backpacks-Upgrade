@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "sophisticatedbackpacks:everlasting_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		"aba",
+		"bcb",
+		"aba"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_sheet/red_steel"
+		},
+		"b": {
+			"item": "tfc:metal/double_sheet/blue_steel"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}

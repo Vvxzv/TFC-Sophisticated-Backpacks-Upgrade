@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"id": "tfcsbu:fridge_upgrade",
+		"count": 1
+	},
+	"pattern": [
+		" a ",
+		"bcb",
+		" b "
+	],
+	"key": {
+		"a": {
+			"tag": "tfc:large_vessels"
+		},
+		"b": {
+			"item": "tfc:wool"
+		},
+		"c": {
+			"item": "sophisticatedbackpacks:upgrade_base"
+		}
+	},
+	"_kubejs_changed_marker": {
+		"source": "server_scripts:backpack_recipe.js",
+		"line": 15
+	}
+}
