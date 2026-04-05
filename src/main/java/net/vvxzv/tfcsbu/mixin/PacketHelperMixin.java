@@ -22,7 +22,10 @@ public class PacketHelperMixin {
         if (tag == null) {
             return ItemStack.EMPTY;
         }
-        return ItemStack.of(tag);
+        int count = packetBuffer.readInt();
+        ItemStack stack = ItemStack.of(tag);
+        stack.setCount(count);
+        return stack;
     }
 
     /**
@@ -35,9 +38,8 @@ public class PacketHelperMixin {
             packetBuffer.writeBoolean(false);
         } else {
             packetBuffer.writeBoolean(true);
-            CompoundTag tag = new CompoundTag();
-            stack.save(tag);
-            packetBuffer.writeNbt(tag);
+            packetBuffer.writeNbt(stack.save(new CompoundTag()));
+            packetBuffer.writeInt(stack.getCount());
         }
     }
 }
