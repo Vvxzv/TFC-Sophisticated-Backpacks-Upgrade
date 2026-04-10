@@ -1,4 +1,4 @@
-package net.vvxzv.tfcsbu.common;
+package net.vvxzv.tfcsbu.common.registry;
 
 import net.dries007.tfc.common.capabilities.food.FoodTrait;
 import net.minecraft.resources.ResourceLocation;
@@ -6,6 +6,9 @@ import net.vvxzv.tfcsbu.Config;
 import net.vvxzv.tfcsbu.TFCSBU;
 
 public class UFoodTrait {
+    public static void registerFoodTrait() {
+    }
+
     @SuppressWarnings("removal")
     private static FoodTrait register(String name, float decayModifier) {
         return FoodTrait.register(new ResourceLocation(TFCSBU.MODID, name), new FoodTrait(() -> decayModifier, "tfcsbu.tooltip.food_trait." + name));

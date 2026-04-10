@@ -32,5 +32,6 @@ public class TFCSBU {
     private static void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(UItem::registerDispenseBehavior);
         event.enqueueWork(UItem::registerCauldronInteractions);
+        event.enqueueWork(UFoodTrait::registerFoodTrait);
     }
 }

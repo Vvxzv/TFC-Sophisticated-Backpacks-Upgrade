@@ -24,7 +24,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 import net.vvxzv.tfcsbu.compat.firmalife.FLOvenBakingHandler;
