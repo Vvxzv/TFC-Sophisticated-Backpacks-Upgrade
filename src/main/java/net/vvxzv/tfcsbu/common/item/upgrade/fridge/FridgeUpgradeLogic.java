@@ -14,10 +14,11 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.vvxzv.tfcsbu.common.registry.DataComponent;
-import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -40,13 +41,13 @@ public class FridgeUpgradeLogic {
         if (this.inventory == null) {
             this.inventory = new StatefulComponentItemHandler(upgrade, ModCoreDataComponents.LENIENT_CONTAINER.get(), 9) {
                 @Override
-                protected void onContentsChanged(int slot, ItemStack oldStack, ItemStack newStack) {
+                protected void onContentsChanged(int slot, @NotNull ItemStack oldStack, @NotNull ItemStack newStack) {
                     super.onContentsChanged(slot, oldStack, newStack);
                     save();
                 }
 
                 @Override
-                public boolean isItemValid(int slot, ItemStack stack) {
+                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                     return true;
                 }
             };
@@ -90,11 +91,11 @@ public class FridgeUpgradeLogic {
             for (int i = 0; i < handler.getSlots(); i++){
                 ItemStack itemStack = handler.getStackInSlot(i);
                 if(isConsumeElectricity){
-                    FoodCapability.removeTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
-                    FoodCapability.applyTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
+                    FoodCapability.removeTrait(itemStack, FoodTraits.FRIDGE_PRESERVED);
+                    FoodCapability.applyTrait(itemStack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
                 } else {
-                    FoodCapability.removeTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
-                    FoodCapability.applyTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
+                    FoodCapability.removeTrait(itemStack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
+                    FoodCapability.applyTrait(itemStack, FoodTraits.FRIDGE_PRESERVED);
                 }
             }
         }

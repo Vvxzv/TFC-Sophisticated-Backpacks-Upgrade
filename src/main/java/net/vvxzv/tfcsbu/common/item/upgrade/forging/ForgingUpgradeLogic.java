@@ -29,7 +29,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Dimension;
@@ -39,9 +38,10 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import net.vvxzv.tfcsbu.compat.maidforge.IForge;
 import net.vvxzv.tfcsbu.compat.maidforge.MaidForgeHandle;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -56,9 +56,8 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     private Level level;
     private List<RecipeHolder<AnvilRecipe>> recipes;
 
-
-    private static final TextureBlitData TARGET = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(183, 1), new Dimension(5, 5));
-    private static final TextureBlitData WORK = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(178, 1), new Dimension(5, 5));
+    // private static final TextureBlitData TARGET = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(183, 1), new Dimension(5, 5));
+    // private static final TextureBlitData WORK = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(178, 1), new Dimension(5, 5));
 
     private static final IForge MAID_FORGE = ModList.get().isLoaded("maidforge")? new MaidForgeHandle(): null;
     private static final UUID uuid = UUID.randomUUID();
@@ -80,13 +79,13 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
                 }
 
                 @Override
-                protected void onContentsChanged(int slot, ItemStack oldStack, ItemStack newStack) {
+                protected void onContentsChanged(int slot, @NotNull ItemStack oldStack, @NotNull ItemStack newStack) {
                     super.onContentsChanged(slot, oldStack, newStack);
                     save();
                 }
 
                 @Override
-                public boolean isItemValid(int slot, ItemStack stack) {
+                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                     return true;
                 }
             };
@@ -137,8 +136,12 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     private void showTargetAndWork(Forging forging, GuiGraphics guiGraphics, int guiX, int guiY) {
         int target = forging.target();
         int work = forging.work();
-        GuiHelper.blit(guiGraphics, target + guiX + 1, guiY + 86, TARGET);
-        GuiHelper.blit(guiGraphics, work + guiX + 1, guiY + 92, WORK);
+
+        // GuiHelper.blit(guiGraphics, target + guiX + 1, guiY + 86, TARGET);
+        GuiHelper.blit(guiGraphics, target + guiX + 1, guiY + 86, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(183, 1), new Dimension(5, 5)));
+
+        // GuiHelper.blit(guiGraphics, work + guiX + 1, guiY + 92, WORK);
+        GuiHelper.blit(guiGraphics, work + guiX + 1, guiY + 92, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(178, 1), new Dimension(5, 5)));
     }
 
     private void showRule(AnvilRecipe recipe, Forging forging, GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
@@ -257,17 +260,17 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     }
 
     @Override
-    public ItemStack getItem() {
+    public @NotNull ItemStack getItem() {
         return this.getInventory().getStackInSlot(0);
     }
 
     @Override
-    public ItemStack getMain() {
+    public @NotNull ItemStack getMain() {
         return this.getInventory().getStackInSlot(0);
     }
 
     @Override
-    public ItemStack getSecondary() {
+    public @NotNull ItemStack getSecondary() {
         return this.getInventory().getStackInSlot(1);
     }
 
@@ -384,7 +387,11 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     }
 
     public void selectRecipe() {
-        if(recipes.size() == 1) {
+        if (this.recipes.isEmpty()) {
+            return;
+        }
+
+        if(this.recipes.size() == 1) {
             return;
         }
 
@@ -393,22 +400,18 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
             return;
         }
 
-        if (recipes.isEmpty()) {
-            return;
-        }
-
         Forging forging = ForgingCapability.get(stack);
         int recipeNum = -1;
-        for (int i = 0; i < recipes.size(); i++) {
-            if (recipes.get(i).value() == forging.getRecipe()) {
+        for (int i = 0; i < this.recipes.size(); i++) {
+            if (this.recipes.get(i).value() == forging.getRecipe()) {
                 recipeNum = i;
             }
         }
         int newRecipeNum = recipeNum + 1;
-        if(newRecipeNum >= recipes.size()) {
+        if(newRecipeNum >= this.recipes.size()) {
             newRecipeNum = 0;
         }
-        RecipeHolder<AnvilRecipe> recipe = recipes.get(newRecipeNum);
+        RecipeHolder<AnvilRecipe> recipe = this.recipes.get(newRecipeNum);
         this.chooseRecipe(recipe);
     }
 
@@ -433,12 +436,12 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     }
 
     @Override
-    public ItemStack getItem(int i) {
-        return null;
+    public @NotNull ItemStack getItem(int i) {
+        return this.getInventory().getStackInSlot(i);
     }
 
     @Override
     public int size() {
-        return 0;
+        return 5;
     }
 }

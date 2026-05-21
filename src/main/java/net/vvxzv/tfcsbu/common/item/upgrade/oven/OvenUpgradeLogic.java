@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.level.Level;
 import net.neoforged.fml.ModList;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Dimension;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
@@ -24,10 +23,9 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
-import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import net.vvxzv.tfcsbu.TFCSBU;
 import net.vvxzv.tfcsbu.common.registry.DataComponent;
-import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 import net.vvxzv.tfcsbu.compat.firmalife.FLOvenBakingHandler;
@@ -65,13 +63,13 @@ public class OvenUpgradeLogic {
                 }
 
                 @Override
-                protected void onContentsChanged(int slot, ItemStack oldStack, ItemStack newStack) {
+                protected void onContentsChanged(int slot, @NotNull ItemStack oldStack, @NotNull ItemStack newStack) {
                     super.onContentsChanged(slot, oldStack, newStack);
                     save();
                 }
 
                 @Override
-                public boolean isItemValid(int slot, ItemStack stack) {
+                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                     return true;
                 }
             };
@@ -144,7 +142,7 @@ public class OvenUpgradeLogic {
                         HeatingRecipe recipe = HeatingRecipe.getRecipe(itemStack);
                         if (recipe!= null && recipe.isValidTemperature(itemTemp)) {
                             ItemStack output = recipe.assembleItem(itemStack);
-                            FoodCapability.applyTrait(output, UFoodTrait.OVEN_BAKED);
+                            FoodCapability.applyTrait(output, FoodTraits.OVEN_BAKED);
                             handler.setStackInSlot(i, output);
                         } else {
                             if(BAKING_HANDLER != null) {

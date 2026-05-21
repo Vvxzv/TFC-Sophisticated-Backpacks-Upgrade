@@ -47,7 +47,7 @@
   "block.tfcsbu.steel_backpack":"鋼製背包",
   "block.tfcsbu.black_steel_backpack":"黑鋼背包",
   "button.power_switch": "電力開關",
-  "button.power_switch.tooltip": "只有當背包在玩家物品欄時，它才會生效",
+  "button.power_switch.tooltip": "它只有在背包有電池升級後才會生效",
   "button.crucible.temperature_lock": "溫度鎖",
   "button.crucible.temperature_lock.tooltip": "只有在使用電源時才能使用",
   "button.power_switch.true": "開",

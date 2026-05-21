@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class ForgingUpgradeLogicContainer {
             }
 
             @Override
-            public boolean mayPickup(Player playerIn) {
+            public boolean mayPickup(@NotNull Player playerIn) {
                 ItemStack stack = this.getItemHandler().getStackInSlot(0);
                 Forging forging = ForgingCapability.get(stack);
                 if (forging.totalWorked() == 0) {
@@ -56,7 +56,7 @@ public class ForgingUpgradeLogicContainer {
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 2, -100, -100) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ItemTags.create(GuiUtils.rl("forge_tools"))) || stack.is(TFCTags.Items.TOOLS_HAMMER);
+                return stack.is(ItemTags.create(LogicHelper.rl("forge_tools"))) || stack.is(TFCTags.Items.TOOLS_HAMMER);
             }
         });
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 3, -100, -100) {

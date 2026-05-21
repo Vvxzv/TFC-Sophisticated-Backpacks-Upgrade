@@ -11,6 +11,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeHandler;
 import net.vvxzv.tfcsbu.Config;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -27,12 +28,12 @@ public class BackpackItemMixin implements IItemSize {
     }
 
     @Override
-    public Size getSize(ItemStack itemStack) {
+    public Size getSize(@NotNull ItemStack itemStack) {
         return Size.HUGE;
     }
 
     @Override
-    public Weight getWeight(ItemStack itemStack) {
+    public Weight getWeight(@NotNull ItemStack itemStack) {
         boolean veryHeavy;
         IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(itemStack);
         UpgradeHandler upgradeHandler = backpackWrapper.getUpgradeHandler();

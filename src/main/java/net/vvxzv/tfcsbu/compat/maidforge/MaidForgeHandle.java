@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import net.vvxzv.maidforge.Config;
 import net.vvxzv.maidforge.MaidForge;
 import net.vvxzv.maidforge.utils.ForgeUtil;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class MaidForgeHandle implements IForge{
     public boolean isValidMaid(Level level, ItemStack maidStack) {
         EntityMaid maid = this.getMaid(level, maidStack);
         if(maid != null) {
-            boolean isTask = maid.getTask().getUid().equals(GuiUtils.rl(MaidForge.MODID, "anvil_forge_task"));
+            boolean isTask = maid.getTask().getUid().equals(LogicHelper.rl(MaidForge.MODID, "anvil_forge_task"));
             boolean isTool = maid.getMainHandItem().is(TFCTags.Items.TOOLS_HAMMER);
             return isTask && isTool;
         }

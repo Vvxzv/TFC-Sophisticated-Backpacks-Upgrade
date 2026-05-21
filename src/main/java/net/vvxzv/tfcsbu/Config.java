@@ -18,12 +18,15 @@ public class Config {
 
     private static final ModConfigSpec.DoubleValue ELECTRICITY_FRIDGE_PRESERVED_DECAY_MODIFIER = BUILDER.comment(" ").comment("冰箱冷藏，食物的腐烂速度").comment("Electricity Fridge Preserved, the decay modifier of food").defineInRange("electricityFridgePreservedDecayModifier", 0.25, 0, Double.MAX_VALUE);
 
+    private static final ModConfigSpec.BooleanValue REMOVE_BACKPACK_ON_MONSTER = BUILDER.comment(" ", "移除怪物身上的背包", "Remove backpack on monster").define("removeBackpackOnMonster", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static int slotsCountToOverweight;
     public static int upgradesCountToOverweight;
     public static double fridgePreservedDecayModifier;
     public static double electricityFridgePreservedDecayModifier;
+    public static boolean removeBackpackOnMonster;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -31,5 +34,6 @@ public class Config {
         upgradesCountToOverweight = UPGRADES_COUNT_TO_OVERWEIGHT.get();
         fridgePreservedDecayModifier = FRIDGE_PRESERVED_DECAY_MODIFIER.get();
         electricityFridgePreservedDecayModifier = ELECTRICITY_FRIDGE_PRESERVED_DECAY_MODIFIER.get();
+        removeBackpackOnMonster = REMOVE_BACKPACK_ON_MONSTER.get();
     }
 }

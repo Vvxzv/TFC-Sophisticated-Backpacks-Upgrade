@@ -1,6 +1,7 @@
 package net.vvxzv.tfcsbu.common.utils;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.energy.IEnergyStorage;
@@ -42,5 +43,17 @@ public class LogicHelper {
         }
 
         return false;
+    }
+
+    public static ResourceLocation rl(String nameSpace, String path) {
+        return rl(nameSpace + ":" + path);
+    }
+
+    public static ResourceLocation rl(String s) {
+        if(s.contains(":")) {
+            String[] strings = s.split(":");
+            return ResourceLocation.fromNamespaceAndPath(strings[0], strings[1]);
+        }
+        return ResourceLocation.fromNamespaceAndPath("tfcsbu", s);
     }
 }

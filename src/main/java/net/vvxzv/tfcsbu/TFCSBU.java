@@ -17,25 +17,25 @@ public class TFCSBU {
 
     public TFCSBU(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(TFCSBU::setup);
-        modEventBus.addListener(UItem::registerCapabilities);
-        modEventBus.addListener(UBlockEntity::registerCapabilities);
-        modEventBus.addListener(UItem::registerContainers);
+        modEventBus.addListener(Items::registerCapabilities);
+        modEventBus.addListener(BlockEntities::registerCapabilities);
+        modEventBus.addListener(Items::registerContainers);
 
         if(FMLEnvironment.dist.isClient()){
-            modEventBus.addListener(UItem::onMenuScreenRegister);
+            modEventBus.addListener(Items::onMenuScreenRegister);
         }
 
-        UFoodTrait.TRAITS.register(modEventBus);
-        UItem.ITEMS.register(modEventBus);
-        UBlock.BLOCKS.register(modEventBus);
-        UBlockEntity.BLOCK_ENTITY_TYPES.register(modEventBus);
+        FoodTraits.TRAITS.register(modEventBus);
+        Items.ITEMS.register(modEventBus);
+        Blocks.BLOCKS.register(modEventBus);
+        BlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         CreativeTab.TABS.register(modEventBus);
         DataComponent.DATA_COMPONENT_TYPES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private static void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(UItem::registerDispenseBehavior);
-        event.enqueueWork(UItem::registerCauldronInteractions);
+        event.enqueueWork(Items::registerDispenseBehavior);
+        event.enqueueWork(Items::registerCauldronInteractions);
     }
 }

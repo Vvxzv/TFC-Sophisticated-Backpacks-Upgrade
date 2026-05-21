@@ -7,18 +7,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.vvxzv.tfcsbu.TFCSBU;
 import net.vvxzv.tfcsbu.common.utils.JEIUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 @JeiPlugin
 public class JEIHideItem implements IModPlugin {
     @Override
-    public ResourceLocation getPluginUid() {
+    public @NotNull ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(TFCSBU.MODID, "hide_item");
     }
 
     @Override
-    public void onRuntimeAvailable(IJeiRuntime jeiRuntime){
+    public void onRuntimeAvailable(@NotNull IJeiRuntime jeiRuntime){
         JEIUtil util = new JEIUtil(jeiRuntime);
         util.removeItemStacks(List.of(
                 ModItems.STACK_UPGRADE_STARTER_TIER.get(),

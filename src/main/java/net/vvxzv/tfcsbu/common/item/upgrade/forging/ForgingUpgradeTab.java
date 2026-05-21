@@ -11,7 +11,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ButtonDefinition;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.Label;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 
 import java.util.Locale;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ForgingUpgradeTab extends UpgradeSettingsTab<ForgingUpgradeContainer> {
     private final ForgingUpgradeLogicControl logicControl;
 
-    private static final TextureBlitData WELDING = new TextureBlitData(GuiUtils.rl("textures/gui/welding.png"), Dimension.SQUARE_16, new UV(0, 0), Dimension.SQUARE_16);
+    private static final TextureBlitData WELDING = new TextureBlitData(LogicHelper.rl("textures/gui/welding.png"), Dimension.SQUARE_16, new UV(0, 0), Dimension.SQUARE_16);
     private static final ButtonDefinition WELDING_BUTTON = new ButtonDefinition(Dimension.SQUARE_18, GuiHelper.DEFAULT_BUTTON_BACKGROUND, GuiHelper.DEFAULT_BUTTON_HOVERED_BACKGROUND, WELDING, Component.translatable("button.forging.welding"));
 
     private static final ButtonDefinition RECIPE_BUTTON = new ButtonDefinition(Dimension.SQUARE_18, GuiHelper.DEFAULT_BUTTON_BACKGROUND, GuiHelper.DEFAULT_BUTTON_HOVERED_BACKGROUND, null);
@@ -27,7 +27,7 @@ public class ForgingUpgradeTab extends UpgradeSettingsTab<ForgingUpgradeContaine
     public static final Map<ForgeStep, TextureBlitData> FORGING_ICONS = Helpers.mapOf(
             ForgeStep.class,
             forgeStep -> new TextureBlitData(
-                    GuiUtils.rl("tfcsbu:textures/gui/forging_background.png"),
+                    LogicHelper.rl("tfcsbu:textures/gui/forging_background.png"),
                     new Dimension(256, 256),
                     new UV(forgeStep.iconX(), forgeStep.iconY()),
                     new Dimension(16, 16)

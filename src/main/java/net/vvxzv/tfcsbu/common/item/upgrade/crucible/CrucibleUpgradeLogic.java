@@ -2,7 +2,6 @@ package net.vvxzv.tfcsbu.common.item.upgrade.crucible;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.blocks.TFCBlocks;
@@ -21,7 +20,6 @@ import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.data.FluidHeat;
 import net.dries007.tfc.util.data.Fuel;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.nbt.CompoundTag;
@@ -46,8 +44,9 @@ import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.vvxzv.tfcsbu.common.registry.DataComponent;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -72,8 +71,8 @@ public class CrucibleUpgradeLogic {
     private boolean isLocked;
 
     private static final int BELLOWS_DURATION = 150;
-    private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
-    private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
+    // private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
+    // private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
 
     public CrucibleUpgradeLogic(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> saveHandler) {
         this.storageWrapper = storageWrapper;
@@ -91,13 +90,13 @@ public class CrucibleUpgradeLogic {
                 }
 
                 @Override
-                protected void onContentsChanged(int slot, ItemStack oldStack, ItemStack newStack) {
+                protected void onContentsChanged(int slot, @NotNull ItemStack oldStack, @NotNull ItemStack newStack) {
                     super.onContentsChanged(slot, oldStack, newStack);
                     save();
                 }
 
                 @Override
-                public boolean isItemValid(int slot, ItemStack stack) {
+                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                     return true;
                 }
             };
@@ -188,11 +187,13 @@ public class CrucibleUpgradeLogic {
         }
 
         if(this.isLocked()) {
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
+            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16));
             lockText.append(Component.literal(": "))
                     .append((Component.translatable("button.power_switch.true")));
         } else {
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
+            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16));
             lockText.append(Component.literal(": "))
                     .append(Component.translatable("button.power_switch.false"));
 
@@ -561,7 +562,7 @@ public class CrucibleUpgradeLogic {
     }
 
     private static final FluidContainerInfo INFO = new FluidContainerInfo() {
-        public boolean canContainFluid(Fluid input) {
+        public boolean canContainFluid(@NotNull Fluid input) {
             return FluidHeat.get(input) != null;
         }
 

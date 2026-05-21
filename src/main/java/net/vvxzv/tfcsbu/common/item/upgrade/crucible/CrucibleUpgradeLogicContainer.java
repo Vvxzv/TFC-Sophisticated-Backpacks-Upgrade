@@ -23,7 +23,6 @@ public class CrucibleUpgradeLogicContainer {
     private final Supplier<CrucibleUpgradeLogic> logicSupplier;
     private final Player player;
 
-    @SuppressWarnings("removal")
     public CrucibleUpgradeLogicContainer(final Player player, final Supplier<CrucibleUpgradeLogic> logicSupplier, Consumer<Slot> addSlot) {
         this.player = player;
         this.logicSupplier = logicSupplier;

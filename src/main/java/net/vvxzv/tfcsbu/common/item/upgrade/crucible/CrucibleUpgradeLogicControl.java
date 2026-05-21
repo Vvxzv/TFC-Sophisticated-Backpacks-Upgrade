@@ -7,7 +7,8 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.CompositeWidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.WidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class CrucibleUpgradeLogicControl extends CompositeWidgetBase<WidgetBase>
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, Minecraft minecraft, int mouseX, int mouseY) {
+    protected void renderBg(@NotNull GuiGraphics guiGraphics, @NotNull Minecraft minecraft, int mouseX, int mouseY) {
         GuiUtils.getLeftBackground(guiGraphics, this.x, this.y, 105, 121);
         GuiHelper.blit(guiGraphics, this.x, this.y, BACKGROUND);
         GuiHelper.blit(guiGraphics, this.x + 106, this.y + 1, BELLOWS_BUTTON);

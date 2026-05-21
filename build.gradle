@@ -55,7 +55,7 @@ neoForge {
 
         server {
             server()
-            programArgument '--nogui'
+            //programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -133,7 +133,8 @@ dependencies {
     // patchouli
     runtimeOnly "curse.maven:patchouli-306770:6842247"
     // tfc
-    implementation "curse.maven:terrafirmacraft-302973:7634816"
+    implementation "curse.maven:terrafirmacraft-302973:8063726"
+    //implementation "curse.maven:terrafirmacraft-302973:7634816"
     // firmalife
     implementation "curse.maven:firmalife-453394:7790886"
 
@@ -146,8 +147,10 @@ dependencies {
     implementation "curse.maven:rhino-416294:7104526"
 
     // backpack
-    implementation "curse.maven:sophisticated-backpacks-422301:7773002"
-    implementation "curse.maven:sophisticated-core-618298:7799435"
+    implementation "curse.maven:sophisticated-backpacks-422301:8116197"
+    implementation "curse.maven:sophisticated-core-618298:8116154"
+    //implementation "curse.maven:sophisticated-backpacks-422301:7773002"
+    //implementation "curse.maven:sophisticated-core-618298:7799435"
 
     //jade
     implementation "curse.maven:jade-324717:6853386"

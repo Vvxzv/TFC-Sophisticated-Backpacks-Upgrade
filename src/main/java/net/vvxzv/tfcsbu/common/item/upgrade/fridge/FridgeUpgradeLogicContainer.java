@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
-import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class FridgeUpgradeLogicContainer {
                     () -> logicSupplier.get().getInventory(), slotIndex, -100, -100
             ) {
                 @Override
-                public boolean mayPlace(ItemStack stack) {
+                public boolean mayPlace(@NotNull ItemStack stack) {
                     IItemSize itemSize = ItemSizeManager.get(stack);
                     return itemSize.getSize(stack).isSmallerThan(Size.LARGE);
                 }
@@ -40,8 +40,8 @@ public class FridgeUpgradeLogicContainer {
                 public @NotNull ItemStack remove(int amount) {
                     ItemStack stack = this.getItemHandler().getStackInSlot(slotIndex);
                     if (!stack.isEmpty()) {
-                        FoodCapability.removeTrait(stack, UFoodTrait.FRIDGE_PRESERVED);
-                        FoodCapability.removeTrait(stack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
+                        FoodCapability.removeTrait(stack, FoodTraits.FRIDGE_PRESERVED);
+                        FoodCapability.removeTrait(stack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
                     }
                     ItemStack extracted = super.remove(amount);
                     this.setChanged();
@@ -50,11 +50,11 @@ public class FridgeUpgradeLogicContainer {
                 }
 
                 @Override
-                public boolean mayPickup(Player playerIn) {
+                public boolean mayPickup(@NotNull Player playerIn) {
                     ItemStack stack = this.getItem();
                     if (!stack.isEmpty()) {
-                        FoodCapability.removeTrait(stack, UFoodTrait.FRIDGE_PRESERVED);
-                        FoodCapability.removeTrait(stack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
+                        FoodCapability.removeTrait(stack, FoodTraits.FRIDGE_PRESERVED);
+                        FoodCapability.removeTrait(stack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
                     }
                     return super.mayPickup(playerIn);
                 }

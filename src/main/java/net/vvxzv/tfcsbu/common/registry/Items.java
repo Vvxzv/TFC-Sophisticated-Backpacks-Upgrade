@@ -49,22 +49,23 @@ import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeContainer;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeTab;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeWrapper;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public class UItem {
+public class Items {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TFCSBU.MODID);
 
-    public static final DeferredItem<BackpackItem> BISMUTH_BRONZE_BACKPACK = ITEMS.register("bismuth_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BISMUTH_BRONZE_BACKPACK));
+    public static final DeferredItem<BackpackItem> BISMUTH_BRONZE_BACKPACK = ITEMS.register("bismuth_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BISMUTH_BRONZE_BACKPACK));
 
-    public static final DeferredItem<BackpackItem> BRONZE_BACKPACK = ITEMS.register("bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BRONZE_BACKPACK));
+    public static final DeferredItem<BackpackItem> BRONZE_BACKPACK = ITEMS.register("bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BRONZE_BACKPACK));
 
-    public static final DeferredItem<BackpackItem> BLACK_BRONZE_BACKPACK = ITEMS.register("black_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BLACK_BRONZE_BACKPACK));
+    public static final DeferredItem<BackpackItem> BLACK_BRONZE_BACKPACK = ITEMS.register("black_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BLACK_BRONZE_BACKPACK));
 
-    public static final DeferredItem<BackpackItem> WROUGHT_IRON_BACKPACK = ITEMS.register("wrought_iron_backpack", () -> new BackpackItem(Config.SERVER.goldBackpack.inventorySlotCount::get, Config.SERVER.goldBackpack.upgradeSlotCount::get, UBlock.WROUGHT_IRON_BACKPACK));
+    public static final DeferredItem<BackpackItem> WROUGHT_IRON_BACKPACK = ITEMS.register("wrought_iron_backpack", () -> new BackpackItem(Config.SERVER.goldBackpack.inventorySlotCount::get, Config.SERVER.goldBackpack.upgradeSlotCount::get, Blocks.WROUGHT_IRON_BACKPACK));
 
-    public static final DeferredItem<BackpackItem> STEEL_BACKPACK = ITEMS.register("steel_backpack", () -> new BackpackItem(Config.SERVER.diamondBackpack.inventorySlotCount::get, Config.SERVER.diamondBackpack.upgradeSlotCount::get, UBlock.STEEL_BACKPACK));
+    public static final DeferredItem<BackpackItem> STEEL_BACKPACK = ITEMS.register("steel_backpack", () -> new BackpackItem(Config.SERVER.diamondBackpack.inventorySlotCount::get, Config.SERVER.diamondBackpack.upgradeSlotCount::get, Blocks.STEEL_BACKPACK));
 
-    public static final DeferredItem<BackpackItem> BLACK_STEEL_BACKPACK = ITEMS.register("black_steel_backpack", () -> new BackpackItem(Config.SERVER.netheriteBackpack.inventorySlotCount::get, Config.SERVER.netheriteBackpack.upgradeSlotCount::get, UBlock.BLACK_STEEL_BACKPACK, Item.Properties::fireResistant));
+    public static final DeferredItem<BackpackItem> BLACK_STEEL_BACKPACK = ITEMS.register("black_steel_backpack", () -> new BackpackItem(Config.SERVER.netheriteBackpack.inventorySlotCount::get, Config.SERVER.netheriteBackpack.upgradeSlotCount::get, Blocks.BLACK_STEEL_BACKPACK, Item.Properties::fireResistant));
 
     public static void registerDispenseBehavior() {
         DispenserBlock.registerBehavior(BISMUTH_BRONZE_BACKPACK.get(), new BackpackDispenseBehavior());
@@ -171,7 +172,7 @@ public class UItem {
         }
 
         @Override
-        public ItemInteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+        public @NotNull ItemInteractionResult interact(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull ItemStack stack) {
             IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(stack);
             if (hasDefaultColor(backpackWrapper)) {
                 return ItemInteractionResult.FAIL;
@@ -188,7 +189,7 @@ public class UItem {
 
     private static class BackpackDispenseBehavior extends OptionalDispenseItemBehavior {
         @Override
-        protected ItemStack execute(BlockSource source, ItemStack stack) {
+        protected @NotNull ItemStack execute(@NotNull BlockSource source, ItemStack stack) {
             setSuccess(false);
             Item item = stack.getItem();
             if (item instanceof BackpackItem backpackItem) {
