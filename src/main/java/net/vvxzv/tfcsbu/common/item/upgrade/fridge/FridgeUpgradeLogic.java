@@ -12,10 +12,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -85,11 +85,11 @@ public class FridgeUpgradeLogic {
             for (int i = 0; i < handler.getSlots(); i++) {
                 ItemStack itemStack = handler.getStackInSlot(i);
                 if(isConsumeElectricity) {
-                    FoodCapability.removeTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
-                    FoodCapability.applyTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
+                    FoodCapability.removeTrait(itemStack, FoodTraits.FRIDGE_PRESERVED);
+                    FoodCapability.applyTrait(itemStack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
                 } else {
-                    FoodCapability.removeTrait(itemStack, UFoodTrait.ELECTRICITY_FRIDGE_PRESERVED);
-                    FoodCapability.applyTrait(itemStack, UFoodTrait.FRIDGE_PRESERVED);
+                    FoodCapability.removeTrait(itemStack, FoodTraits.ELECTRICITY_FRIDGE_PRESERVED);
+                    FoodCapability.applyTrait(itemStack, FoodTraits.FRIDGE_PRESERVED);
                 }
             }
         }

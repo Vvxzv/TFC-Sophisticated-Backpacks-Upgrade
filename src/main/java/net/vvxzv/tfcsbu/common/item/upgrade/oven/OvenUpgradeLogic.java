@@ -24,7 +24,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.registry.UFoodTrait;
+import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 import net.vvxzv.tfcsbu.compat.firmalife.FLOvenBakingHandler;
@@ -140,7 +140,7 @@ public class OvenUpgradeLogic {
                         HeatingRecipe recipe = HeatingRecipe.getRecipe(inventory);
                         if (recipe!= null && recipe.isValidTemperature(itemTemp)) {
                             ItemStack output = recipe.assemble(inventory, level.registryAccess());
-                            FoodCapability.applyTrait(output, UFoodTrait.OVEN_BAKED);
+                            FoodCapability.applyTrait(output, FoodTraits.OVEN_BAKED);
                             handler.setStackInSlot(i, output);
                         } else {
                             if(BAKING_HANDLER != null) {

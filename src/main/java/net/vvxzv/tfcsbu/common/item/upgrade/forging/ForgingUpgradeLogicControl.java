@@ -7,7 +7,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.CompositeWidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.WidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

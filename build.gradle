@@ -102,7 +102,7 @@ minecraft {
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            // args '--nogui'
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.
@@ -182,8 +182,11 @@ dependencies {
 
     //patchouli
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
+
     //tfc
-    implementation fg.deobf("curse.maven:terrafirmacraft-302973:6739107")
+    implementation fg.deobf("curse.maven:terrafirmacraft-302973:8063607")
+    //implementation fg.deobf("curse.maven:terrafirmacraft-302973:6739107")
+
     // fl
     implementation fg.deobf("curse.maven:firmalife-453394:6817407")
     // JEI
@@ -192,10 +195,10 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jeiVersion}"))
 
     // backpack
-    //implementation fg.deobf("curse.maven:sophisticated-core-618298:7077001")
-    //implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:7116643")
-    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:7777412")
-    implementation fg.deobf("curse.maven:sophisticated-core-618298:7757765")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8114838")
+    implementation fg.deobf("curse.maven:sophisticated-core-618298:8114826")
+    //implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:7777412")
+    //implementation fg.deobf("curse.maven:sophisticated-core-618298:7757765")
 
     // curios
     implementation fg.deobf("curse.maven:curios-309927:6418456")
@@ -213,7 +216,7 @@ dependencies {
     // probejs
     implementation fg.deobf("curse.maven:probejs-585406:5227399")
     // jech
-    implementation fg.deobf("curse.maven:just-enough-characters-250702:7411324")
+    //implementation fg.deobf("curse.maven:just-enough-characters-250702:8117466")
     // jei copy
     implementation fg.deobf("curse.maven:jei-copy-recipe-json-1375689:7364314")
 

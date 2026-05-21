@@ -28,9 +28,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -39,7 +36,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -65,8 +62,9 @@ public class CrucibleUpgradeLogic {
     private boolean isLocked;
 
     private static final int BELLOWS_DURATION = 150;
-    private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
-    private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
+
+    // private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
+    // private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
 
     public CrucibleUpgradeLogic(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> saveHandler) {
         this.storageWrapper = storageWrapper;
@@ -173,11 +171,13 @@ public class CrucibleUpgradeLogic {
         }
 
         if(this.isLocked()) {
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
+            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16));
             lockText.append(Component.literal(": "))
                     .append((Component.translatable("button.power_switch.true")));
         } else {
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
+            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16));
             lockText.append(Component.literal(": "))
                     .append(Component.translatable("button.power_switch.false"));
 

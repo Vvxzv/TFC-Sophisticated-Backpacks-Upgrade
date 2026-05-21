@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.ITickableUpgrade;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeWrapperBase;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -29,7 +30,7 @@ public class ForgingUpgradeWrapper extends UpgradeWrapperBase<ForgingUpgradeWrap
     }
 
     @Override
-    public void tick(@Nullable Entity entity, Level level, BlockPos blockPos) {
+    public void tick(@Nullable Entity entity, @NotNull Level level, @NotNull BlockPos blockPos) {
         this.logic.tick(entity, level, blockPos);
     }
 }

@@ -1,18 +1,16 @@
 package net.vvxzv.tfcsbu.common.item.upgrade.forging;
 
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.capabilities.forge.Forging;
 import net.dries007.tfc.common.capabilities.forge.ForgingCapability;
 import net.dries007.tfc.common.items.Powder;
 import net.dries007.tfc.common.items.TFCItems;
-import net.dries007.tfc.util.Metal;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -57,7 +55,7 @@ public class ForgingUpgradeLogicContainer {
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 2, -100, -100) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ItemTags.create(GuiUtils.rl("forge_tools"))) || stack.is(TFCTags.Items.HAMMERS);
+                return stack.is(ItemTags.create(LogicHelper.rl("forge_tools"))) || stack.is(TFCTags.Items.HAMMERS);
             }
         });
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 3, -100, -100) {

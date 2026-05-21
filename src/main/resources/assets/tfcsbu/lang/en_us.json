@@ -47,7 +47,7 @@
   "block.tfcsbu.steel_backpack":"Steel Backpack",
   "block.tfcsbu.black_steel_backpack":"Black Steel Backpack",
   "button.power_switch": "Power Switch",
-  "button.power_switch.tooltip": "It will only take effect when the backpack is in player inventory",
+  "button.power_switch.tooltip": "It will only take effect when the backpack has battery upgrade",
   "button.crucible.temperature_lock": "Temperature Lock",
   "button.crucible.temperature_lock.tooltip": "It can only be used when the power supply is available",
   "button.power_switch.true": "On",

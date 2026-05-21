@@ -1,5 +1,6 @@
 package net.vvxzv.tfcsbu.common.utils;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -36,5 +37,18 @@ public class LogicHelper {
         }
 
         return false;
+    }
+
+
+    @SuppressWarnings("removal")
+    public static ResourceLocation rl(String s) {
+        if(s.contains(":")) {
+            return new ResourceLocation(s);
+        }
+        return new ResourceLocation("tfcsbu", s);
+    }
+
+    public static ResourceLocation rl(String nameSpace, String path) {
+        return rl(nameSpace + ":" + path);
     }
 }

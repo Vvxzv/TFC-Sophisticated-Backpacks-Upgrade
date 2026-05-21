@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.vvxzv.tfcsbu.Config;
 import net.vvxzv.tfcsbu.TFCSBU;
 
-public class UFoodTrait {
+public class FoodTraits {
     public static void registerFoodTrait() {
     }
 

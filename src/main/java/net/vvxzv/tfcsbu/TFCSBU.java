@@ -18,20 +18,20 @@ public class TFCSBU {
     @SuppressWarnings("removal")
     public TFCSBU() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(UItem::registerContainers);
+        modEventBus.addListener(Items::registerContainers);
         modEventBus.addListener(TFCSBU::setup);
 
-        UItem.ITEMS.register(modEventBus);
-        UBlockEntity.BLOCK_ENTITY_TYPES.register(modEventBus);
-        UBlock.BLOCKS.register(modEventBus);
-        UCreativeTAB.TABS.register(modEventBus);
+        Items.ITEMS.register(modEventBus);
+        BlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        Blocks.BLOCKS.register(modEventBus);
+        CreativeTab.TABS.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private static void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(UItem::registerDispenseBehavior);
-        event.enqueueWork(UItem::registerCauldronInteractions);
-        event.enqueueWork(UFoodTrait::registerFoodTrait);
+        event.enqueueWork(Items::registerDispenseBehavior);
+        event.enqueueWork(Items::registerCauldronInteractions);
+        event.enqueueWork(FoodTraits::registerFoodTrait);
     }
 }

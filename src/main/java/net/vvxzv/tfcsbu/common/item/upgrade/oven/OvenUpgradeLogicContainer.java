@@ -51,28 +51,28 @@ public class OvenUpgradeLogicContainer {
 
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 4, -100, -100){
             @Override
-            public boolean mayPlace(ItemStack stack) {
+            public boolean mayPlace(@NotNull ItemStack stack) {
                 IItemSize itemSize = ItemSizeManager.get(stack);
                 return itemSize.getSize(stack).isSmallerThan(Size.LARGE);
             }
         });
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 5, -100, -100){
             @Override
-            public boolean mayPlace(ItemStack stack) {
+            public boolean mayPlace(@NotNull ItemStack stack) {
                 IItemSize itemSize = ItemSizeManager.get(stack);
                 return itemSize.getSize(stack).isSmallerThan(Size.LARGE);
             }
         });
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 6, -100, -100){
             @Override
-            public boolean mayPlace(ItemStack stack) {
+            public boolean mayPlace(@NotNull ItemStack stack) {
                 IItemSize itemSize = ItemSizeManager.get(stack);
                 return itemSize.getSize(stack).isSmallerThan(Size.LARGE);
             }
         });
         this.addSlot(addSlot, new SlotSuppliedHandler(() -> logicSupplier.get().getInventory(), 7, -100, -100){
             @Override
-            public boolean mayPlace(ItemStack stack) {
+            public boolean mayPlace(@NotNull ItemStack stack) {
                 IItemSize itemSize = ItemSizeManager.get(stack);
                 return itemSize.getSize(stack).isSmallerThan(Size.LARGE);
             }

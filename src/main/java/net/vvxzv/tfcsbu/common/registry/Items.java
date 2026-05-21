@@ -48,39 +48,40 @@ import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeContainer;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeTab;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeWrapper;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public class UItem {
+public class Items {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TFCSBU.MODID);
 
-    public static final RegistryObject<BackpackItem> BISMUTH_BRONZE_BACKPACK = ITEMS.register("bismuth_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BISMUTH_BRONZE_BACKPACK));
+    public static final RegistryObject<BackpackItem> BISMUTH_BRONZE_BACKPACK = ITEMS.register("bismuth_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BISMUTH_BRONZE_BACKPACK));
 
-    public static final RegistryObject<BackpackItem> BRONZE_BACKPACK = ITEMS.register("bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BRONZE_BACKPACK));
+    public static final RegistryObject<BackpackItem> BRONZE_BACKPACK = ITEMS.register("bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BRONZE_BACKPACK));
 
-    public static final RegistryObject<BackpackItem> BLACK_BRONZE_BACKPACK = ITEMS.register("black_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, UBlock.BLACK_BRONZE_BACKPACK));
+    public static final RegistryObject<BackpackItem> BLACK_BRONZE_BACKPACK = ITEMS.register("black_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BLACK_BRONZE_BACKPACK));
 
-    public static final RegistryObject<BackpackItem> WROUGHT_IRON_BACKPACK = ITEMS.register("wrought_iron_backpack", () -> new BackpackItem(Config.SERVER.goldBackpack.inventorySlotCount::get, Config.SERVER.goldBackpack.upgradeSlotCount::get, UBlock.WROUGHT_IRON_BACKPACK));
+    public static final RegistryObject<BackpackItem> WROUGHT_IRON_BACKPACK = ITEMS.register("wrought_iron_backpack", () -> new BackpackItem(Config.SERVER.goldBackpack.inventorySlotCount::get, Config.SERVER.goldBackpack.upgradeSlotCount::get, Blocks.WROUGHT_IRON_BACKPACK));
 
-    public static final RegistryObject<BackpackItem> STEEL_BACKPACK = ITEMS.register("steel_backpack", () -> new BackpackItem(Config.SERVER.diamondBackpack.inventorySlotCount::get, Config.SERVER.diamondBackpack.upgradeSlotCount::get, UBlock.STEEL_BACKPACK));
+    public static final RegistryObject<BackpackItem> STEEL_BACKPACK = ITEMS.register("steel_backpack", () -> new BackpackItem(Config.SERVER.diamondBackpack.inventorySlotCount::get, Config.SERVER.diamondBackpack.upgradeSlotCount::get, Blocks.STEEL_BACKPACK));
 
-    public static final RegistryObject<BackpackItem> BLACK_STEEL_BACKPACK = ITEMS.register("black_steel_backpack", () -> new BackpackItem(Config.SERVER.netheriteBackpack.inventorySlotCount::get, Config.SERVER.netheriteBackpack.upgradeSlotCount::get, UBlock.BLACK_STEEL_BACKPACK, Item.Properties::fireResistant));
+    public static final RegistryObject<BackpackItem> BLACK_STEEL_BACKPACK = ITEMS.register("black_steel_backpack", () -> new BackpackItem(Config.SERVER.netheriteBackpack.inventorySlotCount::get, Config.SERVER.netheriteBackpack.upgradeSlotCount::get, Blocks.BLACK_STEEL_BACKPACK, Item.Properties::fireResistant));
 
     public static void registerDispenseBehavior() {
-        DispenserBlock.registerBehavior(BISMUTH_BRONZE_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
-        DispenserBlock.registerBehavior(BRONZE_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
-        DispenserBlock.registerBehavior(BLACK_BRONZE_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
-        DispenserBlock.registerBehavior(WROUGHT_IRON_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
-        DispenserBlock.registerBehavior(STEEL_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
-        DispenserBlock.registerBehavior(BLACK_STEEL_BACKPACK.get(), new UItem.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(BISMUTH_BRONZE_BACKPACK.get(), new Items.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(BRONZE_BACKPACK.get(), new Items.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(BLACK_BRONZE_BACKPACK.get(), new Items.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(WROUGHT_IRON_BACKPACK.get(), new Items.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(STEEL_BACKPACK.get(), new Items.BackpackDispenseBehavior());
+        DispenserBlock.registerBehavior(BLACK_STEEL_BACKPACK.get(), new Items.BackpackDispenseBehavior());
     }
 
     public static void registerCauldronInteractions() {
-        CauldronInteraction.WATER.put(BISMUTH_BRONZE_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
-        CauldronInteraction.WATER.put(BRONZE_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
-        CauldronInteraction.WATER.put(BLACK_BRONZE_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
-        CauldronInteraction.WATER.put(WROUGHT_IRON_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
-        CauldronInteraction.WATER.put(STEEL_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
-        CauldronInteraction.WATER.put(BLACK_STEEL_BACKPACK.get(), new UItem.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(BISMUTH_BRONZE_BACKPACK.get(), new Items.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(BRONZE_BACKPACK.get(), new Items.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(BLACK_BRONZE_BACKPACK.get(), new Items.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(WROUGHT_IRON_BACKPACK.get(), new Items.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(STEEL_BACKPACK.get(), new Items.BackpackCauldronInteraction());
+        CauldronInteraction.WATER.put(BLACK_STEEL_BACKPACK.get(), new Items.BackpackCauldronInteraction());
     }
 
     public static final RegistryObject<Item> FRIDGE_UPGRADE = ITEMS.register("fridge_upgrade", () -> new FridgeUpgradeItem(Config.SERVER.maxUpgradesPerStorage));
@@ -134,9 +135,9 @@ public class UItem {
 
     private static class BackpackCauldronInteraction implements CauldronInteraction {
         @Override
-        public InteractionResult interact(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+        public @NotNull InteractionResult interact(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, ItemStack stack) {
             LazyOptional<IBackpackWrapper> backpackWrapperCapability = stack.getCapability(CapabilityBackpackWrapper.getCapabilityInstance());
-            if (backpackWrapperCapability.map(UItem::hasDefaultColor).orElse(true)) {
+            if (backpackWrapperCapability.map(Items::hasDefaultColor).orElse(true)) {
                 return InteractionResult.PASS;
             }
 
@@ -150,7 +151,7 @@ public class UItem {
 
     private static class BackpackDispenseBehavior extends OptionalDispenseItemBehavior {
         @Override
-        protected ItemStack execute(BlockSource source, ItemStack stack) {
+        protected @NotNull ItemStack execute(@NotNull BlockSource source, ItemStack stack) {
             setSuccess(false);
             Item item = stack.getItem();
             if (item instanceof BackpackItem backpackItem) {

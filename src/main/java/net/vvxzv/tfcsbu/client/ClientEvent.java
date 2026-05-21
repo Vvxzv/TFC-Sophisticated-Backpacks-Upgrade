@@ -11,10 +11,10 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackBlockEntityRenderer;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.block.entity.UBackpackBlockEntity;
-import net.vvxzv.tfcsbu.common.registry.UBlock;
-import net.vvxzv.tfcsbu.common.registry.UBlockEntity;
-import net.vvxzv.tfcsbu.common.registry.UItem;
+import net.vvxzv.tfcsbu.common.block.entity.BackpackEntity;
+import net.vvxzv.tfcsbu.common.registry.Blocks;
+import net.vvxzv.tfcsbu.common.registry.BlockEntities;
+import net.vvxzv.tfcsbu.common.registry.Items;
 
 @Mod.EventBusSubscriber(modid = TFCSBU.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEvent {
@@ -33,7 +33,7 @@ public class ClientEvent {
                 }
                 return -1;
             }).orElse(BackpackWrapper.DEFAULT_CLOTH_COLOR);
-        }, UItem.BISMUTH_BRONZE_BACKPACK.get(), UItem.BRONZE_BACKPACK.get(), UItem.BLACK_BRONZE_BACKPACK.get(), UItem.WROUGHT_IRON_BACKPACK.get(), UItem.STEEL_BACKPACK.get(), UItem.BLACK_STEEL_BACKPACK.get());
+        }, Items.BISMUTH_BRONZE_BACKPACK.get(), Items.BRONZE_BACKPACK.get(), Items.BLACK_BRONZE_BACKPACK.get(), Items.WROUGHT_IRON_BACKPACK.get(), Items.STEEL_BACKPACK.get(), Items.BLACK_STEEL_BACKPACK.get());
     }
 
     @SubscribeEvent
@@ -42,10 +42,10 @@ public class ClientEvent {
             if (tintIndex < 0 || tintIndex > 1 || pos == null) {
                 return -1;
             }
-            return WorldHelper.getBlockEntity(blockDisplayReader, pos, UBackpackBlockEntity.class)
+            return WorldHelper.getBlockEntity(blockDisplayReader, pos, BackpackEntity.class)
                     .map(te -> tintIndex == 0 ? te.getBackpackWrapper().getMainColor() : te.getBackpackWrapper().getAccentColor())
                     .orElse(getDefaultColor(tintIndex));
-        }, UBlock.BISMUTH_BRONZE_BACKPACK.get(), UBlock.BRONZE_BACKPACK.get(), UBlock.BLACK_BRONZE_BACKPACK.get(), UBlock.WROUGHT_IRON_BACKPACK.get(), UBlock.STEEL_BACKPACK.get(), UBlock.BLACK_STEEL_BACKPACK.get());
+        }, Blocks.BISMUTH_BRONZE_BACKPACK.get(), Blocks.BRONZE_BACKPACK.get(), Blocks.BLACK_BRONZE_BACKPACK.get(), Blocks.WROUGHT_IRON_BACKPACK.get(), Blocks.STEEL_BACKPACK.get(), Blocks.BLACK_STEEL_BACKPACK.get());
     }
 
     private static int getDefaultColor(int tintIndex) {
@@ -54,6 +54,6 @@ public class ClientEvent {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(UBlockEntity.BACKPACK.get(), (context) -> new BackpackBlockEntityRenderer());
+        event.registerBlockEntityRenderer(BlockEntities.BACKPACK.get(), (context) -> new BackpackBlockEntityRenderer());
     }
 }

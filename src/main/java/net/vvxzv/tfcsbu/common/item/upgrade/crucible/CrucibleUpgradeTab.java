@@ -9,7 +9,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ButtonDefinition;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.Label;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.utils.GuiUtils;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 
 public class CrucibleUpgradeTab extends UpgradeSettingsTab<CrucibleUpgradeContainer> {
     private final CrucibleUpgradeLogicControl logicControl;

@@ -15,7 +15,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.BackpackCurioRenderer;
 import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.CuriosCompat;
 import net.vvxzv.tfcsbu.TFCSBU;
-import net.vvxzv.tfcsbu.common.registry.UItem;
+import net.vvxzv.tfcsbu.common.registry.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -55,12 +55,12 @@ public class CuriosCompatMixin {
     )
     private void setup(CallbackInfo ci) {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            CuriosRendererRegistry.register(UItem.BISMUTH_BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
-            CuriosRendererRegistry.register(UItem.BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
-            CuriosRendererRegistry.register(UItem.BLACK_BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
-            CuriosRendererRegistry.register(UItem.WROUGHT_IRON_BACKPACK.get(), BackpackCurioRenderer::new);
-            CuriosRendererRegistry.register(UItem.STEEL_BACKPACK.get(), BackpackCurioRenderer::new);
-            CuriosRendererRegistry.register(UItem.BLACK_STEEL_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.BISMUTH_BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.BLACK_BRONZE_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.WROUGHT_IRON_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.STEEL_BACKPACK.get(), BackpackCurioRenderer::new);
+            CuriosRendererRegistry.register(Items.BLACK_STEEL_BACKPACK.get(), BackpackCurioRenderer::new);
         });
     }
 }

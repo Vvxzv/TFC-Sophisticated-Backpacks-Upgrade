@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerBase;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public class OvenUpgradeContainer extends UpgradeContainerBase<OvenUpgradeWrappe
     }
 
     @Override
-    public void handleMessage(CompoundTag compoundTag) {
+    public void handleMessage(@NotNull CompoundTag compoundTag) {
 
     }
 
