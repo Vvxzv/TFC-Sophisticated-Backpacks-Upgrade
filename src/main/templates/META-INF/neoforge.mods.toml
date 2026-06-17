@@ -80,13 +80,13 @@ side = "BOTH"
 [[dependencies."${mod_id}"]]
 modId = "tfc"
 type = "required"
-versionRange = "[4.1.2,)"
+versionRange = "[4.1,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies."${mod_id}"]]
 modId = "sophisticatedbackpacks"
 type = "required"
-versionRange = "[3.25.46,)"
+versionRange = "[3.25.63,)"
 ordering = "AFTER"
 side = "BOTH"

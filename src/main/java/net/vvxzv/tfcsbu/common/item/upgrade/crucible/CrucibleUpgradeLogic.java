@@ -36,10 +36,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Dimension;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.vvxzv.tfcsbu.common.registry.DataComponent;
@@ -71,8 +68,6 @@ public class CrucibleUpgradeLogic {
     private boolean isLocked;
 
     private static final int BELLOWS_DURATION = 150;
-    // private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
-    // private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
 
     public CrucibleUpgradeLogic(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> saveHandler) {
         this.storageWrapper = storageWrapper;
@@ -113,13 +108,14 @@ public class CrucibleUpgradeLogic {
 
     private void showTemperature(GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
         float currentTemp = this.getTemperature();
-        Heat heatLevel = Heat.getHeat(currentTemp);
-        ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
+        //Heat heatLevel = Heat.getHeat(currentTemp);
+        //ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
         int dy = Mth.clamp((int)(51.0F * temperature / Heat.BRILLIANT_WHITE.getMax()), 0, 51);
         new CustomTooltipComponent(25, 18, 8, 51){
             @Override
             public Component[] getComponents() {
-                return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                //return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                return new Component[]{TFCConfig.CLIENT.heatTooltipStyle.get().formatColored((int)currentTemp)};
             }
 
             @Override
@@ -128,7 +124,7 @@ public class CrucibleUpgradeLogic {
             }
         }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
 
-        if(currentTemp > 30){
+        if(currentTemp > 30) {
             GuiHelper.blit(guiGraphics, guiX + 23, guiY + 69 - dy, GuiUtils.TEMPERATURE_INDICATOR);
         }
     }
@@ -187,13 +183,11 @@ public class CrucibleUpgradeLogic {
         }
 
         if(this.isLocked()) {
-            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16));
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, GuiUtils.LOCK);
             lockText.append(Component.literal(": "))
                     .append((Component.translatable("button.power_switch.true")));
         } else {
-            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16));
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, GuiUtils.UNLOCK);
             lockText.append(Component.literal(": "))
                     .append(Component.translatable("button.power_switch.false"));
 

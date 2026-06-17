@@ -5,6 +5,7 @@ import net.dries007.tfc.common.component.heat.Heat;
 import net.dries007.tfc.common.component.heat.HeatCapability;
 import net.dries007.tfc.common.component.heat.IHeat;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.data.Fuel;
@@ -80,13 +81,14 @@ public class OvenUpgradeLogic {
 
     public void showTemperature(@NotNull GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY){
         float currentTemp = getTemperature();
-        Heat heatLevel = Heat.getHeat(currentTemp);
-        ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
+        //Heat heatLevel = Heat.getHeat(currentTemp);
+        //ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
         int dy = Mth.clamp((int)(51.0F * temperature / Heat.BRILLIANT_WHITE.getMax()), 0, 51);
         new CustomTooltipComponent(26, 11, 8, 51){
             @Override
             public Component[] getComponents() {
-                return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                //return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                return new Component[]{TFCConfig.CLIENT.heatTooltipStyle.get().formatColored((int)currentTemp)};
             }
 
             @Override

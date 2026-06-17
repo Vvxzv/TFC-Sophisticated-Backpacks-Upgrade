@@ -34,20 +34,20 @@ public class BackpackItemMixin implements IItemSize {
 
     @Override
     public Weight getWeight(@NotNull ItemStack itemStack) {
-        boolean veryHeavy;
-        IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(itemStack);
-        UpgradeHandler upgradeHandler = backpackWrapper.getUpgradeHandler();
-        int upgradeCount = 0;
-        for (int i = 0; i < upgradeHandler.getSlots(); i++) {
-            ItemStack stack = upgradeHandler.getStackInSlot(i);
-            if(!stack.isEmpty()) {
-                upgradeCount++;
+        try {
+            boolean veryHeavy;
+            IBackpackWrapper backpackWrapper = BackpackWrapper.fromStack(itemStack);
+            UpgradeHandler upgradeHandler = backpackWrapper.getUpgradeHandler();
+            int upgradeCount = 0;
+            for (int i = 0; i < upgradeHandler.getSlots(); i++) {
+                ItemStack stack = upgradeHandler.getStackInSlot(i);
+                if(!stack.isEmpty()) {
+                    upgradeCount++;
+                }
             }
-        }
-        veryHeavy = upgradeCount >= getUpgradeCount();
+            veryHeavy = upgradeCount >= getUpgradeCount();
 
-        if(!veryHeavy) {
-            try {
+            if(!veryHeavy) {
                 InventoryHandler handler = backpackWrapper.getInventoryHandler();
                 int count = 0;
                 for (int i = 0; i < handler.getSlots(); i++) {
@@ -60,10 +60,11 @@ public class BackpackItemMixin implements IItemSize {
                         break;
                     }
                 }
-            } catch (Exception ignored) {
             }
+            return veryHeavy? Weight.VERY_HEAVY: Weight.HEAVY;
+        } catch (Exception ignored) {
+            return Weight.HEAVY;
         }
-        return veryHeavy? Weight.VERY_HEAVY: Weight.HEAVY;
     }
 
     @Override
