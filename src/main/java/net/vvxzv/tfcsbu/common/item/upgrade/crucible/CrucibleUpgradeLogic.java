@@ -13,6 +13,7 @@ import net.dries007.tfc.common.capabilities.heat.IHeat;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.config.TFCConfig;
+import net.dries007.tfc.config.TemperatureDisplayStyle;
 import net.dries007.tfc.util.*;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -63,9 +64,6 @@ public class CrucibleUpgradeLogic {
 
     private static final int BELLOWS_DURATION = 150;
 
-    // private static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
-    // private static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
-
     public CrucibleUpgradeLogic(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> saveHandler) {
         this.storageWrapper = storageWrapper;
         this.upgrade = upgrade;
@@ -102,13 +100,14 @@ public class CrucibleUpgradeLogic {
 
     private void showTemperature(GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
         float currentTemp = this.getTemperature();
-        Heat heatLevel = Heat.getHeat(currentTemp);
-        ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
+        //Heat heatLevel = Heat.getHeat(currentTemp);
+        //ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
         int dy = Mth.clamp((int)(51.0F * temperature / Heat.BRILLIANT_WHITE.getMax()), 0, 51);
         new CustomTooltipComponent(25, 18, 8, 51){
             @Override
             public Component[] getComponents() {
-                return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                //return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                return new Component[]{TFCConfig.CLIENT.heatTooltipStyle.get().formatColored((int)currentTemp)};
             }
 
             @Override
@@ -171,13 +170,11 @@ public class CrucibleUpgradeLogic {
         }
 
         if(this.isLocked()) {
-            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, LOCK);
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16));
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, GuiUtils.LOCK);
             lockText.append(Component.literal(": "))
                     .append((Component.translatable("button.power_switch.true")));
         } else {
-            // GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, UNLOCK);
-            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16));
+            GuiHelper.blit(guiGraphics, guiX + 106, guiY + 37, GuiUtils.UNLOCK);
             lockText.append(Component.literal(": "))
                     .append(Component.translatable("button.power_switch.false"));
 

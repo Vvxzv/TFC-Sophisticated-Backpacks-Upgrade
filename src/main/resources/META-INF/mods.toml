@@ -72,7 +72,7 @@ side="BOTH"
 [[dependencies."${mod_id}"]]
 modId="sophisticatedbackpacks"
 mandatory=true
-versionRange="[3.24.40,)"
+versionRange="[3.24.43,)"
 ordering="AFTER"
 side="BOTH"
 

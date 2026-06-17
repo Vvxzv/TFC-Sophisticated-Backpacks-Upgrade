@@ -11,9 +11,15 @@ public class GuiUtils {
     public static final TextureBlitData SWITCH_OFF = new TextureBlitData(LogicHelper.rl("textures/gui/switch_off.png"), Dimension.SQUARE_16, new UV(0, 0), Dimension.SQUARE_16);
     public static final TextureBlitData SWITCH_ON = new TextureBlitData(LogicHelper.rl("textures/gui/switch_on.png"), Dimension.SQUARE_16, new UV(0, 0), Dimension.SQUARE_16);
 
-    public static final TextureBlitData TEMPERATURE_INDICATOR = new TextureBlitData(LogicHelper.rl("textures/gui/temperature_indicator.png"), Dimension.SQUARE_16, new UV(0, 0), new Dimension(13, 3));
     public static final ResourceLocation CRUCIBLE_BACKGROUND = LogicHelper.rl("textures/gui/crucible_background.png");
+    public static final TextureBlitData LOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 96), Dimension.SQUARE_16);
+    public static final TextureBlitData UNLOCK = new TextureBlitData(GuiUtils.CRUCIBLE_BACKGROUND, new Dimension(128, 128), new UV(112, 112), Dimension.SQUARE_16);
+
     public static final ResourceLocation FORGING_BACKGROUND = LogicHelper.rl("textures/gui/forging_background.png");
+    public static final TextureBlitData TARGET = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(181, 0), new Dimension(5, 5));
+    public static final TextureBlitData WORK = new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(176, 0), new Dimension(5, 5));
+
+    public static final TextureBlitData TEMPERATURE_INDICATOR = new TextureBlitData(LogicHelper.rl("textures/gui/temperature_indicator.png"), Dimension.SQUARE_16, new UV(0, 0), new Dimension(13, 3));
 
     public static void getLeftBackground(GuiGraphics guiGraphics, int guiX, int guiY, int width, int height) {
         TextureBlitData leftTopBorder = getBackgroundTexture(new UV(128, 0), new Dimension(4, height/2));

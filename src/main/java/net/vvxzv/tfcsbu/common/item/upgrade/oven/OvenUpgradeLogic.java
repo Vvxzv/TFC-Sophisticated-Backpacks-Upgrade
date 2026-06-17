@@ -6,6 +6,7 @@ import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeat;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
+import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Fuel;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
@@ -24,6 +25,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.GuiHelper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
+import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
@@ -74,16 +76,16 @@ public class OvenUpgradeLogic {
         return this.inventory;
     }
 
-    @SuppressWarnings("removal")
     public void showTemperature(@NotNull GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY){
         float currentTemp = getTemperature();
-        Heat heatLevel = Heat.getHeat(currentTemp);
-        ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
+        //Heat heatLevel = Heat.getHeat(currentTemp);
+        //ChatFormatting textColor = heatLevel != null ? heatLevel.getColor() : ChatFormatting.GRAY;
         int dy = Mth.clamp((int)(51.0F * temperature / Heat.BRILLIANT_WHITE.getMax()), 0, 51);
         new CustomTooltipComponent(26, 11, 8, 51){
             @Override
             public Component[] getComponents() {
-                return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                //return new Component[]{Component.literal( (int)currentTemp + "°C").withStyle(textColor)};
+                return new Component[]{TFCConfig.CLIENT.heatTooltipStyle.get().formatColored((int)currentTemp)};
             }
 
             @Override
@@ -93,7 +95,7 @@ public class OvenUpgradeLogic {
         }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
 
         if(currentTemp > 30){
-            GuiHelper.blit(guiGraphics, guiX + 24, guiY + 62 - dy, new TextureBlitData(new ResourceLocation("tfcsbu:textures/gui/temperature_indicator.png"), Dimension.SQUARE_16, new UV(0, 0), new Dimension(13, 3)));
+            GuiHelper.blit(guiGraphics, guiX + 24, guiY + 62 - dy, GuiUtils.TEMPERATURE_INDICATOR);
         }
     }
 
