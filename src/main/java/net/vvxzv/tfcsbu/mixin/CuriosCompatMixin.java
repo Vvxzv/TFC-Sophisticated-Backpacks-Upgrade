@@ -16,6 +16,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.BackpackCurioRenderer;
 import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.CuriosCompat;
 import net.vvxzv.tfcsbu.TFCSBU;
 import net.vvxzv.tfcsbu.common.registry.Items;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,7 +42,7 @@ public class CuriosCompatMixin {
         if (registryName != null && registryName.getNamespace().equals(TFCSBU.MODID) && item instanceof BackpackItem) {
             evt.addCapability(new ResourceLocation(TFCSBU.MODID, registryName.getPath() + "_curios"), new ICapabilityProvider() {
                 @Nonnull
-                public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+                public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                     return CuriosCapability.ITEM.orEmpty(cap, LazyOptional.of(() -> () -> stack));
                 }
             });

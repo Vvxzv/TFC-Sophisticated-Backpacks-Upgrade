@@ -11,7 +11,7 @@ public class CreativeTab {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TFCSBU.MODID);
 
     public static final RegistryObject<CreativeModeTab> TAB = TABS.register("tab", () -> CreativeModeTab.builder()
-            .icon(() -> Items.FRIDGE_UPGRADE.get().getDefaultInstance())
+            .icon(() -> Items.STACK_UPGRADE_TIER_RED_STEEL.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 Items.ITEMS.getEntries().forEach(entries -> {
                     output.accept(entries.get());

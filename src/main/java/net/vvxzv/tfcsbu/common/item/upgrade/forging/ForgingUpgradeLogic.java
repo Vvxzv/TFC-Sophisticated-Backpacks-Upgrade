@@ -1,8 +1,6 @@
 package net.vvxzv.tfcsbu.common.item.upgrade.forging;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.devices.AnvilBlock;
@@ -14,11 +12,7 @@ import net.dries007.tfc.common.recipes.TFCRecipeTypes;
 import net.dries007.tfc.common.recipes.WeldingRecipe;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.advancements.TFCAdvancements;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -33,8 +27,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.ItemStackHandler;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
-import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import net.vvxzv.tfcsbu.compat.maidforge.IForge;
 import net.vvxzv.tfcsbu.compat.maidforge.MaidForgeHandle;
 import org.jetbrains.annotations.NotNull;
@@ -82,95 +74,6 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
         }
 
         return this.inventory;
-    }
-
-    public void show(GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
-        ItemStack stack = this.getItem();
-        Forging forging = ForgingCapability.get(stack);
-        if(forging != null) {
-            this.showTargetAndWork(forging, guiGraphics, guiX, guiY);
-
-            Level level = Minecraft.getInstance().level;
-            if(level != null) {
-                AnvilRecipe recipe = forging.getRecipe(level);
-                if (recipe != null && recipe.isCorrectTier(this.getTier())) {
-                    this.showRule(recipe, forging, guiGraphics, guiX, guiY, mouseX, mouseY);
-
-                    RegistryAccess access = ClientHelpers.getLevelOrThrow().registryAccess();
-                    ItemStack resultItem = recipe.getResultItem(access);
-                    guiGraphics.renderItem(resultItem, guiX + 126, guiY + 6);
-                    new CustomTooltipComponent(126, 0, 17, 17) {
-                        @Override
-                        public Component[] getComponents() {
-                            return new Component[]{resultItem.getHoverName()};
-                        }
-
-                        @Override
-                        public boolean hasTooltip() {
-                            return true;
-                        }
-                    }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
-                } else {
-                    GuiHelper.blit(guiGraphics, guiX + 126, guiY + 6, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(236, 0), Dimension.SQUARE_16));
-                }
-
-                ForgeSteps steps = forging.getSteps();
-                ForgeStep[] stepSequence = new ForgeStep[]{steps.last(), steps.secondLast(), steps.thirdLast()};
-                for(int i = 0; i < 3; ++i) {
-                    ForgeStep step = stepSequence[i];
-                    if (step != null) {
-                        int xOffset = i * 19;
-                        guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 52 + xOffset, guiY + 23, 10, 10, step.iconX(), step.iconY(), 32, 32, 256, 256);
-                    }
-                }
-            }
-        } else {
-            GuiHelper.blit(guiGraphics, guiX + 126, guiY + 6, new TextureBlitData(GuiUtils.FORGING_BACKGROUND, Dimension.SQUARE_256, new UV(219, 51), Dimension.SQUARE_16));
-        }
-    }
-
-    private void showTargetAndWork(Forging forging, GuiGraphics guiGraphics, int guiX, int guiY) {
-        int target = forging.getWorkTarget();
-        int work = forging.getWork();
-        GuiHelper.blit(guiGraphics, target + guiX + 1, guiY + 86, GuiUtils.TARGET);
-        GuiHelper.blit(guiGraphics, work + guiX + 1, guiY + 92, GuiUtils.WORK);
-    }
-
-    private void showRule(AnvilRecipe recipe, Forging forging, GuiGraphics guiGraphics, int guiX, int guiY, int mouseX, int mouseY) {
-        ForgeSteps steps = forging.getSteps();
-        ForgeRule[] rules = recipe.getRules();
-        for(int i = 0; i < rules.length; ++i) {
-            ForgeRule rule = rules[i];
-            if (rule != null) {
-                int xOffset = i * 19;
-                guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 52 + xOffset, guiY, 10, 10, rule.iconX(), rule.iconY(), 32, 32, 256, 256);
-                if (rule.matches(steps)) {
-                    RenderSystem.setShaderColor(0.0F, 0.6F, 0.2F, 1.0F);
-                } else {
-                    RenderSystem.setShaderColor(1.0F, 0.4F, 0.0F, 1.0F);
-                }
-
-                guiGraphics.blit(GuiUtils.FORGING_BACKGROUND, guiX + 47 + xOffset, guiY - 3, 198, rule.overlayY(), 20, 22);
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            }
-        }
-        for(int i = 0; i < rules.length; ++i) {
-            ForgeRule rule = rules[i];
-            if (rule != null) {
-                int xOffset = i * 19;
-                new CustomTooltipComponent(52 + xOffset, 0, 10, 10) {
-                    @Override
-                    public Component[] getComponents() {
-                        return new Component[]{rule.getDescriptionId()};
-                    }
-
-                    @Override
-                    public boolean hasTooltip() {
-                        return true;
-                    }
-                }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
-            }
-        }
     }
 
     public void tick(Entity entity, Level level, BlockPos blockPos) {

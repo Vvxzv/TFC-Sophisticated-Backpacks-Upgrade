@@ -7,10 +7,11 @@ import net.minecraft.world.item.ItemStack;
 import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.vvxzv.tfcsbu.Config;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.*;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.IntSupplier;
 
 @Mixin(BackpackItem.class)
 public class BackpackItemMixin implements IItemSize {
@@ -25,12 +26,12 @@ public class BackpackItemMixin implements IItemSize {
     }
 
     @Override
-    public Size getSize(ItemStack itemStack) {
+    public @NotNull Size getSize(@NotNull ItemStack itemStack) {
         return Size.HUGE;
     }
 
     @Override
-    public Weight getWeight(ItemStack itemStack) {
+    public @NotNull Weight getWeight(ItemStack itemStack) {
         AtomicBoolean veryHeavy = new AtomicBoolean(false);
         itemStack.getCapability(CapabilityBackpackWrapper.getCapabilityInstance()).ifPresent((w) -> {
             int uSlots = w.getUpgradeHandler().getSlots();
@@ -55,7 +56,7 @@ public class BackpackItemMixin implements IItemSize {
     }
 
     @Override
-    public int getDefaultStackSize(ItemStack stack) {
+    public int getDefaultStackSize(@NotNull ItemStack stack) {
         return 1;
     }
 }

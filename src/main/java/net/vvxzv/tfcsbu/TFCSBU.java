@@ -18,14 +18,14 @@ public class TFCSBU {
     @SuppressWarnings("removal")
     public TFCSBU() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(Items::registerContainers);
-        modEventBus.addListener(TFCSBU::setup);
 
         Items.ITEMS.register(modEventBus);
         BlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         Blocks.BLOCKS.register(modEventBus);
         CreativeTab.TABS.register(modEventBus);
 
+        modEventBus.addListener(Items::registerContainers);
+        modEventBus.addListener(TFCSBU::setup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 

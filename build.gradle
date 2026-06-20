@@ -184,8 +184,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
 
     //tfc
-    implementation fg.deobf("curse.maven:terrafirmacraft-302973:8063607")
-    //implementation fg.deobf("curse.maven:terrafirmacraft-302973:6739107")
+    implementation fg.deobf("curse.maven:terrafirmacraft-302973:8242625")
 
     // fl
     implementation fg.deobf("curse.maven:firmalife-453394:6817407")
@@ -195,10 +194,13 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jeiVersion}"))
 
     // backpack
-    //implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8114838")
-    //implementation fg.deobf("curse.maven:sophisticated-core-618298:8114826")
-    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8136850")
-    implementation fg.deobf("curse.maven:sophisticated-core-618298:8145750")
+    //58
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8272350")
+    implementation fg.deobf("curse.maven:sophisticated-core-618298:8272318")
+
+    //43
+    //implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8136850")
+    //implementation fg.deobf("curse.maven:sophisticated-core-618298:8145750")
 
     // curios
     implementation fg.deobf("curse.maven:curios-309927:6418456")
