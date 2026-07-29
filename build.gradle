@@ -148,8 +148,6 @@ dependencies {
     // backpack
     implementation "curse.maven:sophisticated-backpacks-422301:8249848"
     implementation "curse.maven:sophisticated-core-618298:8249811"
-    //implementation "curse.maven:sophisticated-backpacks-422301:8145672"
-    //implementation "curse.maven:sophisticated-core-618298:8145747"
 
     //jade
     implementation "curse.maven:jade-324717:6853386"
