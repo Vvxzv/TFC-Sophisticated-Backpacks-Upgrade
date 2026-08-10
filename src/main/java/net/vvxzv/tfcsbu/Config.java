@@ -6,7 +6,7 @@ import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 @SuppressWarnings("removal")
-@EventBusSubscriber(modid = TFCSBU.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TFCSophisticatedBackpacksUpgrade.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 

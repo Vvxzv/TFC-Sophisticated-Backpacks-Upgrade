@@ -6,7 +6,7 @@ import net.minecraft.world.inventory.Slot;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.CompositeWidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.WidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.client.gui.GuiUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -60,7 +60,7 @@ public class CrucibleUpgradeLogicControl extends CompositeWidgetBase<WidgetBase>
             slot.x = this.x - screenGuiLeft + xOffset;
             slot.y = this.y - screenGuiTop + yOffset;
         } catch (Exception e) {
-            TFCSBU.LOGGER.error("Fail to modify slot pos ", e);
+            TFCSophisticatedBackpacksUpgrade.LOGGER.error("Fail to modify slot pos ", e);
         }
     }
 }

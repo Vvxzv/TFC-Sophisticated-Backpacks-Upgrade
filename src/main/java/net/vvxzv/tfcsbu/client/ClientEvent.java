@@ -16,7 +16,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackBlockEntityRenderer;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.render.BackpackItemStackRenderer;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.block.entity.TFCBackpackBlockEntity;
 import net.vvxzv.tfcsbu.common.registry.Blocks;
 import net.vvxzv.tfcsbu.common.registry.BlockEntities;
@@ -24,7 +24,7 @@ import net.vvxzv.tfcsbu.common.registry.Items;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("removal")
-@EventBusSubscriber(modid = TFCSBU.MODID, bus = EventBusSubscriber.Bus.MOD , value = Dist.CLIENT)
+@EventBusSubscriber(modid = TFCSophisticatedBackpacksUpgrade.MODID, bus = EventBusSubscriber.Bus.MOD , value = Dist.CLIENT)
 public class ClientEvent {
 
     @SubscribeEvent

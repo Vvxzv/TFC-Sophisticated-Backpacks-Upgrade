@@ -9,7 +9,6 @@ import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendar;
 import net.dries007.tfc.util.data.Fuel;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,7 +23,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.TextureBlitData;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.UV;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.registry.DataComponent;
 import net.vvxzv.tfcsbu.common.registry.FoodTraits;
 import net.vvxzv.tfcsbu.common.utils.CustomTooltipComponent;
@@ -98,7 +97,7 @@ public class OvenUpgradeLogic {
         }.draw(guiGraphics, guiX, guiY, mouseX, mouseY);
 
         if(currentTemp > 30){
-            GuiHelper.blit(guiGraphics, guiX + 24, guiY + 62 - dy, new TextureBlitData(ResourceLocation.fromNamespaceAndPath(TFCSBU.MODID, "textures/gui/temperature_indicator.png"), Dimension.SQUARE_16, new UV(0, 0), new Dimension(13, 3)));
+            GuiHelper.blit(guiGraphics, guiX + 24, guiY + 62 - dy, new TextureBlitData(ResourceLocation.fromNamespaceAndPath(TFCSophisticatedBackpacksUpgrade.MODID, "textures/gui/temperature_indicator.png"), Dimension.SQUARE_16, new UV(0, 0), new Dimension(13, 3)));
         }
     }
 

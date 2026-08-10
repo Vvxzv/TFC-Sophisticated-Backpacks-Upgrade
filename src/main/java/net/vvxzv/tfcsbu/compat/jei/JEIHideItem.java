@@ -5,7 +5,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.resources.ResourceLocation;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.utils.JEIUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class JEIHideItem implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(TFCSBU.MODID, "hide_item");
+        return ResourceLocation.fromNamespaceAndPath(TFCSophisticatedBackpacksUpgrade.MODID, "hide_item");
     }
 
     @Override

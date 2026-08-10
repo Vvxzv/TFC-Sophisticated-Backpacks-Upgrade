@@ -4,12 +4,12 @@ import net.dries007.tfc.common.component.food.FoodTrait;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vvxzv.tfcsbu.Config;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 
 import java.util.function.Supplier;
 
 public class FoodTraits {
-    public static final DeferredRegister<FoodTrait> TRAITS = DeferredRegister.create(net.dries007.tfc.common.component.food.FoodTraits.KEY, TFCSBU.MODID);
+    public static final DeferredRegister<FoodTrait> TRAITS = DeferredRegister.create(net.dries007.tfc.common.component.food.FoodTraits.KEY, TFCSophisticatedBackpacksUpgrade.MODID);
 
     private static DeferredHolder<FoodTrait, FoodTrait> register(String name, Supplier<Double> decayModifier) {
         return TRAITS.register(name, () -> new FoodTrait(decayModifier, "tfcsbu.tooltip.food_trait." + name));
