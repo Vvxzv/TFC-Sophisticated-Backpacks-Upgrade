@@ -5,11 +5,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.block.Backpack;
 
 public class Blocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TFCSBU.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TFCSophisticatedBackpacksUpgrade.MODID);
 
     public static final RegistryObject<BackpackBlock> BISMUTH_BRONZE_BACKPACK = BLOCKS.register("bismuth_bronze_backpack", Backpack::new);
     public static final RegistryObject<BackpackBlock> BRONZE_BACKPACK = BLOCKS.register("bronze_backpack", Backpack::new);

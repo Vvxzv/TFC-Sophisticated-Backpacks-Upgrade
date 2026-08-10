@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
 
+/**
+ * 解决开发环境无法启动游戏而存在
+ */
 @Mixin(BackpackWrapper.class)
 public abstract class BackpackWrapperMixin {
 

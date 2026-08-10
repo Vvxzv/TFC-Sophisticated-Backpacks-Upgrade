@@ -31,7 +31,7 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeGuiManager;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerRegistry;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.stack.StackUpgradeItem;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeContainer;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeTab;
@@ -52,7 +52,7 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
 public class Items {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TFCSBU.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TFCSophisticatedBackpacksUpgrade.MODID);
 
     public static final RegistryObject<BackpackItem> BISMUTH_BRONZE_BACKPACK = ITEMS.register("bismuth_bronze_backpack", () -> new BackpackItem(Config.SERVER.ironBackpack.inventorySlotCount::get, Config.SERVER.ironBackpack.upgradeSlotCount::get, Blocks.BISMUTH_BRONZE_BACKPACK));
 

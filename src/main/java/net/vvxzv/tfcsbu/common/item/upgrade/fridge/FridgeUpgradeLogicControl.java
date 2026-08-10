@@ -6,7 +6,7 @@ import net.minecraft.world.inventory.Slot;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.CompositeWidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.WidgetBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class FridgeUpgradeLogicControl extends CompositeWidgetBase<WidgetBase> {
             slot.x = this.x - screenGuiLeft + xOffset;
             slot.y = this.y - screenGuiTop + yOffset;
         } catch (Exception e) {
-            TFCSBU.LOGGER.error("修改Slot坐标失败", e);
+            TFCSophisticatedBackpacksUpgrade.LOGGER.error("修改Slot坐标失败", e);
         }
     }
 }

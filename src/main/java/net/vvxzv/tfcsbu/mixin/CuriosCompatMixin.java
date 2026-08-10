@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.BackpackCurioRenderer;
 import net.p3pp3rf1y.sophisticatedbackpacks.compat.curios.CuriosCompat;
-import net.vvxzv.tfcsbu.TFCSBU;
+import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
 import net.vvxzv.tfcsbu.common.registry.Items;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,8 +39,8 @@ public class CuriosCompatMixin {
         final ItemStack stack = evt.getObject();
         Item item = stack.getItem();
         ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(item);
-        if (registryName != null && registryName.getNamespace().equals(TFCSBU.MODID) && item instanceof BackpackItem) {
-            evt.addCapability(new ResourceLocation(TFCSBU.MODID, registryName.getPath() + "_curios"), new ICapabilityProvider() {
+        if (registryName != null && registryName.getNamespace().equals(TFCSophisticatedBackpacksUpgrade.MODID) && item instanceof BackpackItem) {
+            evt.addCapability(new ResourceLocation(TFCSophisticatedBackpacksUpgrade.MODID, registryName.getPath() + "_curios"), new ICapabilityProvider() {
                 @Nonnull
                 public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                     return CuriosCapability.ITEM.orEmpty(cap, LazyOptional.of(() -> () -> stack));
