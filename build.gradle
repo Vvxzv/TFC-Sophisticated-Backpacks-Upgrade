@@ -146,8 +146,8 @@ dependencies {
     implementation "curse.maven:rhino-416294:7104526"
 
     // backpack
-    implementation "curse.maven:sophisticated-backpacks-422301:8249848"
-    implementation "curse.maven:sophisticated-core-618298:8249811"
+    implementation "curse.maven:sophisticated-backpacks-422301:8627841"
+    implementation "curse.maven:sophisticated-core-618298:8627791"
 
     //jade
     implementation "curse.maven:jade-324717:6853386"
