@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "tfcsbu:stack_upgrade_copper_to_bronze_tier_conversion",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_sheet/bronze"
+		},
+		"b": {
+			"item": "minecraft:leather"
+		}
+	}
+}

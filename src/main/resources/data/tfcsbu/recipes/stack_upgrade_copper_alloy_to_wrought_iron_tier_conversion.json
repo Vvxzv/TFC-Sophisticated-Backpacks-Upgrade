@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "tfcsbu:stack_upgrade_copper_alloy_to_wrought_iron_tier_conversion",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_sheet/wrought_iron"
+		},
+		"b": {
+			"item": "minecraft:leather"
+		}
+	}
+}

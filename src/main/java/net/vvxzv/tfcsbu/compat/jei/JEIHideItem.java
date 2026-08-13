@@ -30,7 +30,17 @@ public class JEIHideItem implements IModPlugin {
                 ModItems.IRON_BACKPACK.get(),
                 ModItems.GOLD_BACKPACK.get(),
                 ModItems.DIAMOND_BACKPACK.get(),
-                ModItems.NETHERITE_BACKPACK.get()
+                ModItems.NETHERITE_BACKPACK.get(),
+                ModItems.STACK_UPGRADE_STARTER_TIER_TO_TIER_1_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_STARTER_TIER_TO_TIER_2_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_STARTER_TIER_TO_TIER_3_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_STARTER_TIER_TO_TIER_4_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_1_TO_TIER_2_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_1_TO_TIER_3_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_1_TO_TIER_4_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_2_TO_TIER_3_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_2_TO_TIER_4_CONVERSION.get(),
+                ModItems.STACK_UPGRADE_TIER_3_TO_TIER_4_CONVERSION.get()
         ));
     }
 

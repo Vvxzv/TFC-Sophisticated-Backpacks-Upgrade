@@ -30,8 +30,10 @@ import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeGuiManager;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerRegistry;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
+import net.p3pp3rf1y.sophisticatedcore.upgrades.stack.StackUpgradeConversionItem;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.stack.StackUpgradeItem;
 import net.vvxzv.tfcsbu.TFCSophisticatedBackpacksUpgrade;
+import net.vvxzv.tfcsbu.common.item.upgrade.StackUpgradeConversionExtendedItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeContainer;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.crucible.CrucibleUpgradeTab;
@@ -49,6 +51,8 @@ import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeItem;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeTab;
 import net.vvxzv.tfcsbu.common.item.upgrade.oven.OvenUpgradeWrapper;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Items {
@@ -119,15 +123,36 @@ public class Items {
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_COPPER = ITEMS.register("stack_upgrade_tier_copper", () -> new StackUpgradeItem(2.0, Config.SERVER.maxUpgradesPerStorage));
 
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_BISMUTH_BRONZE = ITEMS.register("stack_upgrade_tier_bismuth_bronze", () -> new StackUpgradeItem(4.0, Config.SERVER.maxUpgradesPerStorage));
+
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_BRONZE = ITEMS.register("stack_upgrade_tier_bronze", () -> new StackUpgradeItem(4.0, Config.SERVER.maxUpgradesPerStorage));
+
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_BLACK_BRONZE = ITEMS.register("stack_upgrade_tier_black_bronze", () -> new StackUpgradeItem(4.0, Config.SERVER.maxUpgradesPerStorage));
+
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_WROUGHT_IRON = ITEMS.register("stack_upgrade_tier_wrought_iron", () -> new StackUpgradeItem(8.0, Config.SERVER.maxUpgradesPerStorage));
+
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_STEEL = ITEMS.register("stack_upgrade_tier_steel", () -> new StackUpgradeItem(16.0, Config.SERVER.maxUpgradesPerStorage));
+
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_BLACK_STEEL = ITEMS.register("stack_upgrade_tier_black_steel", () -> new StackUpgradeItem(32.0, Config.SERVER.maxUpgradesPerStorage));
 
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_BLUE_STEEL = ITEMS.register("stack_upgrade_tier_blue_steel", () -> new StackUpgradeItem(64.0, Config.SERVER.maxUpgradesPerStorage));
 
     public static final RegistryObject<StackUpgradeItem> STACK_UPGRADE_TIER_RED_STEEL = ITEMS.register("stack_upgrade_tier_red_steel", () -> new StackUpgradeItem(64.0, Config.SERVER.maxUpgradesPerStorage));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_COPPER_TO_BISMUTH_BRONZE_TIER_CONVERSION = ITEMS.register("stack_upgrade_copper_to_bismuth_bronze_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_COPPER, STACK_UPGRADE_TIER_BISMUTH_BRONZE));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_COPPER_TO_BRONZE_TIER_CONVERSION = ITEMS.register("stack_upgrade_copper_to_bronze_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_COPPER, STACK_UPGRADE_TIER_BRONZE));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_COPPER_TO_BLACK_BRONZE_TIER_CONVERSION = ITEMS.register("stack_upgrade_copper_to_black_bronze_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_COPPER, STACK_UPGRADE_TIER_BLACK_BRONZE));
+
+    public static final RegistryObject<StackUpgradeConversionExtendedItem> STACK_UPGRADE_COPPER_ALLOY_TO_WROUGHT_IRON_TIER_CONVERSION = ITEMS.register("stack_upgrade_copper_alloy_to_wrought_iron_tier_conversion", () -> new StackUpgradeConversionExtendedItem(List.of(STACK_UPGRADE_TIER_BISMUTH_BRONZE, STACK_UPGRADE_TIER_BRONZE, STACK_UPGRADE_TIER_BLACK_BRONZE), STACK_UPGRADE_TIER_WROUGHT_IRON));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_WROUGHT_IRON_TO_STEEL_TIER_CONVERSION = ITEMS.register("stack_upgrade_wrought_iron_to_steel_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_WROUGHT_IRON, STACK_UPGRADE_TIER_STEEL));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_STEEL_TO_BLACK_STEEL_TIER_CONVERSION = ITEMS.register("stack_upgrade_steel_to_black_steel_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_STEEL, STACK_UPGRADE_TIER_BLACK_STEEL));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_BLACK_STEEL_TO_BLUE_STEEL_TIER_CONVERSION = ITEMS.register("stack_upgrade_black_steel_to_blue_steel_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_BLACK_STEEL, STACK_UPGRADE_TIER_BLUE_STEEL));
+
+    public static final RegistryObject<StackUpgradeConversionItem> STACK_UPGRADE_BLACK_STEEL_TO_RED_STEEL_TIER_CONVERSION = ITEMS.register("stack_upgrade_black_steel_to_red_steel_tier_conversion", () -> new StackUpgradeConversionItem(STACK_UPGRADE_TIER_BLACK_STEEL, STACK_UPGRADE_TIER_RED_STEEL));
 
     private static boolean hasDefaultColor(IStorageWrapper wrapper) {
         return wrapper.getAccentColor() == BackpackWrapper.DEFAULT_BORDER_COLOR && wrapper.getMainColor() == BackpackWrapper.DEFAULT_CLOTH_COLOR;

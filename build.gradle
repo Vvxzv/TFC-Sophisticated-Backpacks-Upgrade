@@ -194,13 +194,8 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jeiVersion}"))
 
     // backpack
-    //58
-    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8272350")
-    implementation fg.deobf("curse.maven:sophisticated-core-618298:8272318")
-
-    //43
-    //implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8136850")
-    //implementation fg.deobf("curse.maven:sophisticated-core-618298:8145750")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:8627862")
+    implementation fg.deobf("curse.maven:sophisticated-core-618298:8627806")
 
     // curios
     implementation fg.deobf("curse.maven:curios-309927:6418456")

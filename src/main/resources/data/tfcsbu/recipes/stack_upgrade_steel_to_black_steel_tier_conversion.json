@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "tfcsbu:stack_upgrade_steel_to_black_steel_tier_conversion",
+		"count": 1
+	},
+	"pattern": [
+		"aaa",
+		"aba",
+		"aaa"
+	],
+	"key": {
+		"a": {
+			"item": "tfc:metal/double_sheet/black_steel"
+		},
+		"b": {
+			"item": "minecraft:leather"
+		}
+	}
+}
