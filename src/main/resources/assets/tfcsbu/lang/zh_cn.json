@@ -47,7 +47,7 @@
   "item.tfcsbu.stack_upgrade_wrought_iron_to_steel_tier_conversion": "堆叠升级转换：锻铁 -> 钢",
   "item.tfcsbu.stack_upgrade_steel_to_black_steel_tier_conversion": "堆叠升级转换：钢 -> 黑钢",
   "item.tfcsbu.stack_upgrade_black_steel_to_blue_steel_tier_conversion": "堆叠升级转换：黑钢 -> 蓝钢",
-  "item.tfcsbu.stack_upgrade_black_steel_to_red_steel_tier_conversion": "堆叠升级转换：蓝钢 -> 红钢",
+  "item.tfcsbu.stack_upgrade_black_steel_to_red_steel_tier_conversion": "堆叠升级转换：黑钢 -> 红钢",
 
   "block.tfcsbu.bismuth_bronze_backpack":"铋铜背包",
   "block.tfcsbu.bronze_backpack":"青铜背包",
