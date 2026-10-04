@@ -1,13 +1,17 @@
 package net.vvxzv.tfcsbu.mixin;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -25,7 +29,6 @@ public abstract class BackpackWrapperMixin {
     @Shadow(remap = false)
     private static String UPGRADE_SLOTS_TAG = "upgradeSlots";
 
-    @Final
     @Shadow(remap = false)
     private ItemStack backpack;
 
@@ -35,45 +38,46 @@ public abstract class BackpackWrapperMixin {
     @Shadow(remap = false)
     protected abstract void setNumberOfUpgradeSlots(int numberOfUpgradeSlots);
 
-    /**
-     * @author Vvxzv
-     * @reason 1
-     */
-    @Overwrite(remap = false)
-    private int getNumberOfInventorySlots() {
+    @Inject(method = "getNumberOfInventorySlots", at = @At("HEAD"), cancellable = true, remap = false)
+    private void getNumberOfInventorySlots(CallbackInfoReturnable<Integer> cir) {
+        if(FMLEnvironment.production) return;
+
         Optional<Integer> inventorySlots = NBTHelper.getInt(this.backpack, INVENTORY_SLOTS_TAG);
 
         if (inventorySlots.isPresent()) {
-            return inventorySlots.get();
+            cir.setReturnValue(inventorySlots.get());
+            cir.cancel();
+            return;
         }
 
         int itemInventorySlots = ((BackpackItem) this.backpack.getItem()).getNumberOfSlots();
         setNumberOfInventorySlots(itemInventorySlots);
-        return itemInventorySlots;
+        cir.setReturnValue(itemInventorySlots);
+        cir.cancel();
     }
 
-    /**
-     * @author Vvxzv
-     * @reason 1
-     */
-    @Overwrite(remap = false)
-    private int getNumberOfUpgradeSlots() {
+    @Inject(method = "getNumberOfUpgradeSlots", at = @At("HEAD"), cancellable = true, remap = false)
+    private void getNumberOfUpgradeSlots(CallbackInfoReturnable<Integer> cir) {
+        if(FMLEnvironment.production) return;
+
         Optional<Integer> upgradeSlots = NBTHelper.getInt(backpack, UPGRADE_SLOTS_TAG);
 
         if (upgradeSlots.isPresent()) {
-            return upgradeSlots.get();
+            cir.setReturnValue(upgradeSlots.get());
+            cir.cancel();
+            return;
         }
 
         int itemUpgradeSlots = ((BackpackItem) backpack.getItem()).getNumberOfUpgradeSlots();
         setNumberOfUpgradeSlots(itemUpgradeSlots);
-        return itemUpgradeSlots;
+        cir.setReturnValue(itemUpgradeSlots);
+        cir.cancel();
     }
 
-    /**
-     * @author Vvxzv
-     * @reason 1
-     */
-    @Overwrite(remap = false)
-    private void cacheSlotNumbers() {
+    @Inject(method = "cacheSlotNumbers", at = @At("HEAD"), cancellable = true, remap = false)
+    private void cacheSlotNumbers(CallbackInfo ci) {
+        if(!FMLEnvironment.production) {
+            ci.cancel();
+        }
     }
 }

@@ -25,9 +25,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.ItemStackHandler;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.*;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
-import net.vvxzv.tfcsbu.compat.maidforge.IForge;
+import net.vvxzv.tfcsbu.compat.maidforge.IMaidForge;
 import net.vvxzv.tfcsbu.compat.maidforge.MaidForgeHandle;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,8 +43,8 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     private Level level;
     private List<AnvilRecipe> recipes;
 
-    private static final IForge MAID_FORGE = ModList.get().isLoaded("maidforge")? new MaidForgeHandle(): null;
-    private static final UUID uuid = UUID.randomUUID();
+    private static final IMaidForge MAID_FORGE = ModList.get().isLoaded("maidforge")? new MaidForgeHandle(): null;
+    private static final GameProfile PROFILE = new GameProfile(UUID.randomUUID(), "Maid");
 
     public ForgingUpgradeLogic(ItemStack upgrade, Consumer<ItemStack> saveHandler) {
         this.upgrade = upgrade;
@@ -92,7 +91,7 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
                 if(level.getGameTime() % (MAID_FORGE.perTicks() * 2) == 0L) {
                     ItemStack hammer = MAID_FORGE.getMaidMainHandItem(level, maidStack);
                     if(hammer.getDamageValue() != hammer.getMaxDamage() -1) {
-                        FakePlayer player = new FakePlayer((ServerLevel) level, new GameProfile(uuid, "Maid"));
+                        FakePlayer player = new FakePlayer((ServerLevel) level, PROFILE);
                         if(entity != null) {
                             player.setPos(entity.position());
                         } else {
@@ -286,7 +285,7 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
     }
 
     public void selectRecipe() {
-        if(recipes.size() == 1) {
+        if(this.recipes.size() == 1) {
             return;
         }
 
@@ -295,24 +294,24 @@ public class ForgingUpgradeLogic implements WeldingRecipe.Inventory, AnvilRecipe
             return;
         }
 
-        if (recipes.isEmpty()) {
+        if (this.recipes.isEmpty()) {
             return;
         }
 
         Forging forging = ForgingCapability.get(stack);
         int recipeNum = -1;
         if(forging != null) {
-            for (int i = 0; i < recipes.size(); i++) {
-                if(recipes.get(i).equals(forging.getRecipe(this.level))){
+            for (int i = 0; i < this.recipes.size(); i++) {
+                if(this.recipes.get(i).equals(forging.getRecipe(this.level))){
                     recipeNum = i;
                 }
             }
         }
         int newRecipeNum = recipeNum + 1;
-        if(newRecipeNum >= recipes.size()) {
+        if(newRecipeNum >= this.recipes.size()) {
             newRecipeNum = 0;
         }
-        AnvilRecipe recipe = recipes.get(newRecipeNum);
+        AnvilRecipe recipe = this.recipes.get(newRecipeNum);
         this.chooseRecipe(recipe);
     }
 

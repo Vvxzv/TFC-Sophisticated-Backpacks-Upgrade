@@ -2,11 +2,10 @@ package net.vvxzv.tfcsbu.compat.maidforge;
 
 import net.dries007.tfc.common.capabilities.forge.ForgeRule;
 import net.dries007.tfc.common.capabilities.forge.ForgeStep;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public interface IForge {
+public interface IMaidForge {
 
     boolean isValidMaid(Level level, ItemStack maidStack);
 

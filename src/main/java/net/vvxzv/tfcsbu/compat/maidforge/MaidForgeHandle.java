@@ -15,7 +15,7 @@ import net.vvxzv.maidforge.MaidForge;
 import net.vvxzv.maidforge.utils.ForgeUtil;
 import net.vvxzv.tfcsbu.common.utils.LogicHelper;
 
-public class MaidForgeHandle implements IForge{
+public class MaidForgeHandle implements IMaidForge {
     private EntityMaid getMaid(Level level, ItemStack maidStack) {
         EntityMaid maid = InitEntities.MAID.get().create(level);
         if(maidStack.getItem() instanceof ItemSmartSlab) {
