@@ -46,32 +46,11 @@ public class TFCSophisticatedBackpacksUpgrade {
         DataComponent.DATA_COMPONENT_TYPES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
-        IEventBus bus = NeoForge.EVENT_BUS;
-        bus.addListener(this::vesselUUID);
+        NeoForgeEventHandler.init();
     }
 
     private static void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(Items::registerDispenseBehavior);
         event.enqueueWork(Items::registerCauldronInteractions);
-    }
-
-    public void vesselUUID(PlayerTickEvent.Pre event) {
-        if(event.getEntity() instanceof ServerPlayer player) {
-            if(player.level().getGameTime() % 20 == 0) {
-                AbstractContainerMenu menu = player.containerMenu;
-                menu.slots.forEach(slot -> {
-                    ItemStack stack = slot.getItem();
-                    int count = stack.getCount();
-                    if(stack.is(ItemTagKeys.FIRED_VESSELS) && count == 1) {
-                        CustomData data = stack.getOrDefault(DataComponent.TAG, CustomData.of(new CompoundTag()));
-                        CompoundTag tag = data.copyTag();
-                        if(!tag.contains("uuid")) {
-                            tag.putUUID("uuid", UUID.randomUUID());
-                            stack.set(DataComponent.TAG, CustomData.of(tag));
-                        }
-                    }
-                });
-            }
-        }
     }
 }
